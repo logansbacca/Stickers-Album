@@ -1,0 +1,91 @@
+* {
+  margin: none;
+  box-sizing: border-box;
+  font-family: "Segoe UI", sans-serif;
+  font-size: 1rem;
+  line-height: 1.6;
+}
+
+body {
+  background-image: linear-gradient(to right, lightskyblue, purple);
+}
+
+.wrap {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  width: 100%;
+  position: absolute;
+}
+
+.form {
+  background-color: white;
+  border-radius: 6px;
+  padding: 20px;
+  width: 400px;
+  height: 450px;
+  border: 1px solid #ddd;
+}
+
+.input-header {
+  text-align: center;
+  margin-bottom: 30px;
+}
+.input-header h1 {
+  font-size: 30px;
+  font-weight: bold;
+}
+
+.inputs {
+  display: flex;
+  flex-direction: column;
+  margin: 5px;
+}
+
+input {
+  flex: 1;
+  outline: none;
+  border: 2px solid whitesmoke;
+  padding: 8px;
+  margin-bottom: 15px;
+}
+
+.button {
+  display: flex;
+  justify-content: center;
+}
+.btn {
+  flex: 1;
+  color: white;
+  font-weight: bold;
+  height: 45px;
+  border-radius: 20px;
+  background-color: lightskyblue;
+  border: none;
+  cursor: pointer;
+}
+
+.fgpw a {
+  text-decoration: none;
+  color: grey;
+}
+
+.form-footer {
+  text-align: center;
+}
+
+.form-footer h1 {
+  color: grey;
+}
+
+.form-footer a {
+  text-decoration: none;
+  color: lightskyblue;
+  cursor: pointer;
+}
+
+.parag {
+  color: red;
+  font-size: 10px;
+}
