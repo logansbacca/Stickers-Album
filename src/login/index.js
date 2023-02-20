@@ -1,6 +1,6 @@
 let username = document.getElementById("username");
 let password = document.getElementById("password");
-let elements = document.querySelectorAll(".parag");
+let warning = document.querySelector(".warning");
 let button = document.getElementById("bt");
 button.addEventListener("click", submit);
 import { setCurrentUser } from "../modules/currentUser.js";
@@ -9,8 +9,8 @@ async function submit() {
   let user = username.value;
   let pass = password.value;
   if (user.includes(" ") || pass.includes(" ")) {
-    elements[1].style.color = "red";
-    elements[1].innerHTML = "no spaces allowed";
+    warning.style.color = "red";
+    warning.innerHTML = "no spaces allowed";
   } else {
     const encoder = new TextEncoder();
     const data = encoder.encode(pass);
@@ -21,12 +21,12 @@ async function submit() {
     let newUser = JSON.parse(localStorage.getItem(user));
     if (newUser != null && newUser.password === hashedPassword) {
       setCurrentUser(user);
-      elements[1].style.color = "green";
-      elements[1].innerHTML = "login successful";
+      warning.style.color = "green";
+      warning.innerHTML = "login successful";
       window.location.href = "../home/index.html";
     } else {
-      elements[1].style.color = "red";
-      elements[1].innerHTML = "please input correct information";
+      warning.style.color = "red";
+      warning.innerHTML = "please input correct information";
     }
   }
 }

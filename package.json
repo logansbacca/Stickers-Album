@@ -9,12 +9,13 @@
     "preview": "vite preview",
     "lint": "npx eslint src test",
     "lint:fix": "npm run lint -- --fix",
-    "prettier": "npx prettier src test --check",
-    "prettier:fix": "npm run prettier -- --write"
+    "prettier": "npx prettier src --check",
+    "prettier:fix": "npm run prettier src -- --write"
   },
   "devDependencies": {
     "eslint": "^8.34.0",
     "prettier": "^2.8.4",
+    "prettier-eslint": "^15.0.1",
     "vite": "^4.1.0"
   }
 }

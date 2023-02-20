@@ -1,6 +1,4 @@
-* {
-  margin: 0;
-  padding: 0;
+html {
   box-sizing: border-box;
   font-family: "Oswald", sans-serif;
   overflow: hidden;
@@ -8,7 +6,8 @@
 
 /* navbar */
 body {
-  background-color: aqua;
+  margin: 0;
+  padding: 0;
   height: 100%;
   width: 100%;
 }
@@ -20,7 +19,7 @@ body {
   display: flex;
 }
 
-.navbar h3 {
+.navbar h1 {
   margin-left: 30px;
   color: white;
   width: 100%;
@@ -72,7 +71,8 @@ body {
   cursor: pointer;
 }
 
-#icon {
+.fa-solid {
   color: #009acd;
-  width: 3%;
+  
+  
 }

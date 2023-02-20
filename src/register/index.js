@@ -1,16 +1,16 @@
 let username = document.getElementById("username");
 let password = document.getElementById("password");
 let button = document.getElementById("bt");
-let placeholder = document.querySelectorAll(".placeholder");
+let warning = document.querySelector(".warning");
 button.addEventListener("click", submit);
 
 async function submit() {
   let user = username.value;
   let pass = password.value;
 
-  if (user.includes(" ") || pass.includes(" ")) {
-    placeholder[1].style.color = "red";
-    placeholder[1].innerHTML = "no spaces allowed";
+  if (user.includes(" ") || pass.includes(" ") || user === "" || pass === "") {
+    warning.style.color = "red";
+    warning.innerHTML = "insert data correctly : whitespace not allowed";
   } else {
     const encoder = new TextEncoder();
     const data = encoder.encode(pass);
@@ -19,8 +19,7 @@ async function submit() {
       .map((b) => b.toString(16).padStart(2, "0"))
       .join("");
     if (
-      localStorage.getItem(user) === null ||
-      localStorage.getItem(user) != hashedPassword
+      localStorage.getItem(user) === null
     ) {
       const userData = {
         username: user,
@@ -31,8 +30,8 @@ async function submit() {
       localStorage.setItem(user, JSON.stringify(userData));
       window.location.href = "../login/index.html";
     } else {
-      placeholder[1].style.color = "red";
-      placeholder[1].innerHTML = "user already exists";
+      warning.style.color = "red";
+      warning.innerHTML = "user already exists";
     }
   }
 }

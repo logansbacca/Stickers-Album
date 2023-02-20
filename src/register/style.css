@@ -1,4 +1,4 @@
-* {
+html{
   margin: none;
   padding: none;
   box-sizing: border-box;
@@ -7,7 +7,7 @@
   line-height: 1.6;
 }
 
-html,
+
 body {
   margin: 0;
   height: 100%;
@@ -87,6 +87,7 @@ input {
 
 .form-footer h1 {
   color: grey;
+  
 }
 
 .form-footer a {
@@ -115,6 +116,11 @@ input {
   padding: 15px;
 }
 
-#icon {
+.fa-solid {
   color: #009acd;
+}
+
+.warning {
+  font-size: 12px;
+
 }
