@@ -1,3 +1,1 @@
-class Card {
-    
-}
+class Card {}

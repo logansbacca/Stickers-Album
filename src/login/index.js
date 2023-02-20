@@ -18,7 +18,7 @@ async function submit() {
     const hashedPassword = Array.from(new Uint8Array(hash))
       .map((b) => b.toString(16).padStart(2, "0"))
       .join("");
-    let newUser = JSON.parse(localStorage.getItem(user))
+    let newUser = JSON.parse(localStorage.getItem(user));
     if (newUser != null && newUser.password === hashedPassword) {
       setCurrentUser(user);
       elements[1].style.color = "green";

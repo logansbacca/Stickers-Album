@@ -68,7 +68,7 @@ input {
   height: 45px;
   border-radius: 20px;
   background-color: black;
-  border: solid 2px #009ACD;
+  border: solid 2px #009acd;
   cursor: pointer;
 }
 
@@ -107,18 +107,15 @@ input {
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  height:20%;
+  height: 20%;
 }
 
-
-.title h1{
+.title h1 {
   font-size: 40px;
   font-weight: bold;
   padding: 15px;
 }
 
-
-
-#icon{
-  color:#009ACD	;
+#icon {
+  color: #009acd;
 }

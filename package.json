@@ -4,17 +4,17 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "lint": "eslint --fix --ext .js,.html,.css .",
     "dev": "vite",
     "build": "vite build",
     "preview": "vite preview",
-    "prettier": "prettier --write 'src/**/*.js'",
-    "check-all": "npm run prettier && npm run lint",
+    "lint": "npx eslint src test",
+    "lint:fix": "npm run lint -- --fix",
+    "prettier": "npx prettier src test --check",
+    "prettier:fix": "npm run prettier -- --write"
   },
   "devDependencies": {
     "eslint": "^8.34.0",
     "prettier": "^2.8.4",
-    "prettier-eslint": "^15.0.1",
     "vite": "^4.1.0"
   }
 }

@@ -23,11 +23,11 @@ async function submit() {
       localStorage.getItem(user) != hashedPassword
     ) {
       const userData = {
-        username : user,
-        password : hashedPassword,
-        stickers : [],
-        credits  : 1,
-      }
+        username: user,
+        password: hashedPassword,
+        stickers: [],
+        credits: 1,
+      };
       localStorage.setItem(user, JSON.stringify(userData));
       window.location.href = "../login/index.html";
     } else {

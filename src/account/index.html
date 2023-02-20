@@ -1,47 +1,52 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link href="style.css" rel="stylesheet" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;500&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css"
+      integrity="sha512-SzlrxWUlpfuzQ+pcUCosxcglQRNAq/DZjVsC0lE40xsADsfeQoEypE+enwcOiGjk/bSuGGKHEyjSoQ1zVisanQ=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+  </head>
 
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="style.css" rel="stylesheet">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;500&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css"
-    integrity="sha512-SzlrxWUlpfuzQ+pcUCosxcglQRNAq/DZjVsC0lE40xsADsfeQoEypE+enwcOiGjk/bSuGGKHEyjSoQ1zVisanQ=="
-    crossorigin="anonymous" referrerpolicy="no-referrer" />
-</head>
-
-<body>
-   <!--    navbar -->
-   <nav>
-    <div class="navbar">
+  <body>
+    <!--    navbar -->
+    <nav>
+      <div class="navbar">
         <i id="icon" class="fa-solid fa-meteor fa-2xl"></i>
         <h3>SUPER HERO STICKERS ALBUM</h3>
         <ul class="navigation">
-            <li><a href="/home/index.html">Home</a></li>
-            <li><a href="../account/index.html">Account</a></li>
-            <li><a href="../login/index.html">Sign In</a></li>
-            <li id="sign-out"><a href="../home/index.html">Sign Out</a></li>
+          <li><a href="/home/index.html">Home</a></li>
+          <li><a href="../account/index.html">Account</a></li>
+          <li><a href="../login/index.html">Sign In</a></li>
+          <li id="sign-out"><a href="../home/index.html">Sign Out</a></li>
         </ul>
-    </div>
-</nav>
-<!--   end  navbar -->
+      </div>
+    </nav>
+    <!--   end  navbar -->
     <h1 id="welcome"></h1>
     <div class="credits">
-        <p>Total Credits</p>
-        <p id="credit"></p>
-        <button id="credit-button">Buy More</button>
+      <p>Total Credits</p>
+      <p id="credit"></p>
+      <button id="credit-button">Buy More</button>
     </div>
     <div class="cards">
-    <h2>Your Cards</h2>
-    <button id="add-cards">Get Cards</button>
-    <button>Exchange Cards</button>
+      <h2>Your Cards</h2>
+      <button id="add-cards">Get Cards</button>
+      <button>Exchange Cards</button>
     </div>
     <script type="module" src="index.js"></script>
     <script type="module" src="../modules/currentUser.js"></script>
-</body>
-
+  </body>
 </html>
