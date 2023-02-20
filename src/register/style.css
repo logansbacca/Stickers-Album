@@ -1,4 +1,4 @@
-html{
+html {
   margin: none;
   padding: none;
   box-sizing: border-box;
@@ -6,7 +6,6 @@ html{
   font-size: 1rem;
   line-height: 1.6;
 }
-
 
 body {
   margin: 0;
@@ -87,7 +86,6 @@ input {
 
 .form-footer h1 {
   color: grey;
-  
 }
 
 .form-footer a {
@@ -122,5 +120,4 @@ input {
 
 .warning {
   font-size: 12px;
-
 }

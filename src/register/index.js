@@ -1,10 +1,12 @@
 let username = document.getElementById("username");
 let password = document.getElementById("password");
+let userEmail = document.getElementById("email");
 let button = document.getElementById("bt");
 let warning = document.querySelector(".warning");
 button.addEventListener("click", submit);
 
 async function submit() {
+  let email = userEmail.value;
   let user = username.value;
   let pass = password.value;
 
@@ -18,14 +20,13 @@ async function submit() {
     const hashedPassword = Array.from(new Uint8Array(hash))
       .map((b) => b.toString(16).padStart(2, "0"))
       .join("");
-    if (
-      localStorage.getItem(user) === null
-    ) {
+    if (localStorage.getItem(user) === null) {
       const userData = {
         username: user,
         password: hashedPassword,
         stickers: [],
         credits: 1,
+        email: email,
       };
       localStorage.setItem(user, JSON.stringify(userData));
       window.location.href = "../login/index.html";

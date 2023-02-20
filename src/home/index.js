@@ -6,8 +6,6 @@ signOut.addEventListener("click", () => {
   logOut();
 });
 
-
-
 join.addEventListener("click", () => {
   window.location.href = "../register/index.html";
 });
