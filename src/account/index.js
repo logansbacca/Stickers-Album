@@ -5,7 +5,7 @@ let welcome = document.getElementById("welcome");
 let signOut = document.getElementById("sign-out");
 let creditButton = document.getElementById("credit-button");
 let credits = document.getElementById("credit");
-let addCards = document.getElementById("add-cards");
+/* let addCards = document.getElementById("add-cards"); */
 const currentUser = getCurrentUser();
 
 window.onload = function checkUser() {

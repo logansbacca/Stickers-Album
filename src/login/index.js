@@ -3,7 +3,7 @@ let password = document.getElementById("password");
 let elements = document.querySelectorAll(".parag");
 let button = document.getElementById("bt");
 button.addEventListener("click", submit);
-import { getCurrentUser, setCurrentUser } from "../modules/currentUser.js";
+import { setCurrentUser } from "../modules/currentUser.js";
 
 async function submit() {
   let user = username.value;
