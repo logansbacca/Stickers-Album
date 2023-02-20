@@ -54,7 +54,7 @@ body {
   height: 800px;
 }
 
-.body-btn {
+.join-btn {
   background-color: black;
   color: white;
   height: 80px;
@@ -64,7 +64,7 @@ body {
   letter-spacing: 4px;
   border-radius: 30px;
 }
-.body-btn:hover {
+.join-btn:hover {
   color: grey;
   border: solid 2px grey;
   cursor: pointer;
