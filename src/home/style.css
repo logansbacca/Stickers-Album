@@ -2,6 +2,7 @@ html {
   box-sizing: border-box;
   font-family: "Oswald", sans-serif;
   scroll-behavior: smooth;
+  background-color: black;
 }
 
 /* navbar */
@@ -159,18 +160,15 @@ body {
   cursor: pointer;
 }
 
-
-footer{
+footer {
   display: flex;
   justify-content: center;
   align-items: flex-end;
   height: 400px;
   background-color: black;
-
- 
 }
 
-.footer{
+.footer {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -181,54 +179,56 @@ footer{
   border-radius: 5px;
   border-bottom: none;
   width: 80%;
-  color:grey;
-  
+  color: grey;
 }
 
-
-.footer-header{
+.footer-header {
   display: flex;
   justify-content: end;
   flex-direction: column;
   align-items: center;
   width: 100%;
   height: 70%;
-  
 }
 
-.footer-header h1{
+.footer-header h1 {
   letter-spacing: 5px;
   font-size: 14px;
   font-weight: 300;
 }
 
-.footer-header hr{
+.footer-header hr {
   width: 90%;
   border: none;
   height: 1px;
-  background-color: lightgrey
+  background-color: lightgrey;
 }
 
-
-
-.copyright{
+.copyright {
   display: flex;
   align-items: center;
   height: 30%;
 }
 
-.copyright span{
+.copyright span {
   margin-right: 4px;
   font-size: 12px;
   font-weight: 300;
-  color:white;
+  color: white;
 }
 
-.copyright a{
+.copyright a {
   margin-left: 4px;
   font-size: 12px;
   font-weight: 300;
-  color:white;
+  color: lightgray;
   text-decoration: none;
 }
 
+
+
+.copyright img {
+  width: 18px;
+  height: 18px;
+  margin-left: 4px;
+}
