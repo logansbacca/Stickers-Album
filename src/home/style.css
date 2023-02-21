@@ -56,19 +56,21 @@ body {
 }
 
 .join-btn {
-  background-color: black;
+  /* background-color: black; */
   color: white;
   height: 80px;
   width: 240px;
-  border: solid 2px #009acd;
+  border: solid 1px #009acd;
   font-size: 25px;
   letter-spacing: 4px;
   border-radius: 30px;
+  background: linear-gradient(to left, black, grey) right;
+  background-size: 200%;
+  transition: 0.5s ease-out;
 }
 .join-btn:hover {
-  color: grey;
-  border: solid 2px grey;
-  cursor: pointer;
+  background-position: left;
+  border: solid 1px lightgrey;
 }
 
 .icon {
@@ -87,13 +89,13 @@ body {
   align-items: center;
   flex-direction: column;
   background-color: black;
-  height: 750px;
+  height: 500px;
   width: 100%;
 }
 
 .about h1 {
   margin-top: 60px;
-  margin-bottom: 20px;
+  margin-bottom: 10px;
   font-size: 40px;
   color: white;
   letter-spacing: 2px;
@@ -111,6 +113,7 @@ body {
   margin-top: 20px;
   width: 60%;
   text-align: center;
+  margin-bottom: 100px;
 }
 
 .cards {
@@ -118,46 +121,43 @@ body {
   justify-content: space-around;
   align-items: center;
   flex-direction: row;
-  width: 100%;
+  width: 80%;
   height: 100%;
 }
 
 .card2 {
   background-color: white;
-  width: 400px;
-  height: 400px;
+  width: 300px;
+  height: 300px;
   border-radius: 20px;
 }
 .card1 {
   background-color: white;
-  width: 400px;
-  height: 400px;
+  width: 300px;
+  height: 300px;
   border-radius: 20px;
 }
 
 .card3 {
   background-color: white;
-  width: 400px;
-  height: 400px;
+  width: 300px;
+  height: 300px;
   border-radius: 20px;
 }
 
 .card1:hover {
   transform: scale(1.075);
   transition: 0.3s ease-in;
-  cursor: pointer;
 }
 
 .card2:hover {
   transform: scale(1.075);
   transition: 0.3s ease-in;
-  cursor: pointer;
 }
 
 .card3:hover {
   transform: scale(1.075);
   transition: 0.3s ease-in;
-  cursor: pointer;
 }
 
 footer {
@@ -176,7 +176,8 @@ footer {
   flex-direction: column;
   height: 150px;
   border: solid 1px #009acd;
-  border-radius: 5px;
+  border-top-right-radius: 20px;
+  border-top-left-radius: 20px;
   border-bottom: none;
   width: 80%;
   color: grey;
@@ -224,8 +225,6 @@ footer {
   color: lightgray;
   text-decoration: none;
 }
-
-
 
 .copyright img {
   width: 18px;

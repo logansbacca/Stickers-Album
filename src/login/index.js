@@ -3,6 +3,7 @@ let password = document.getElementById("password");
 let warning = document.querySelector(".warning");
 let button = document.getElementById("bt");
 button.addEventListener("click", submit);
+import { hashPassword } from "../modules/hashPassword.js";
 import { setCurrentUser } from "../modules/currentUser.js";
 
 async function submit() {
@@ -12,12 +13,7 @@ async function submit() {
     warning.style.color = "red";
     warning.innerHTML = "no spaces allowed";
   } else {
-    const encoder = new TextEncoder();
-    const data = encoder.encode(pass);
-    const hash = await crypto.subtle.digest("SHA-256", data);
-    const hashedPassword = Array.from(new Uint8Array(hash))
-      .map((b) => b.toString(16).padStart(2, "0"))
-      .join("");
+    const hashedPassword = await hashPassword(pass);
     let newUser = JSON.parse(localStorage.getItem(user));
     if (newUser != null && newUser.password === hashedPassword) {
       setCurrentUser(user);

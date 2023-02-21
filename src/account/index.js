@@ -1,11 +1,12 @@
 import { getCurrentUser } from "../modules/currentUser.js";
 import { logOut } from "../modules/logout";
+import { fetchCards } from "../modules/fetchCards.js";
 
 let welcome = document.getElementById("welcome");
 let signOut = document.getElementById("sign-out");
 let creditButton = document.getElementById("credit-button");
 let credits = document.getElementById("credit");
-/* let addCards = document.getElementById("add-cards"); */
+let addCards = document.getElementById("add-cards");
 const currentUser = getCurrentUser();
 
 window.onload = function checkUser() {
@@ -32,4 +33,9 @@ creditButton.addEventListener("click", () => {
   userString.credits += 1;
   localStorage.setItem(currentUser, JSON.stringify(userString));
   credits.innerHTML = userString.credits.toString();
+});
+
+addCards.addEventListener("click", () => {
+  let cards = fetchCards();
+  console.log(cards);
 });
