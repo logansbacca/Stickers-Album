@@ -1,5 +1,4 @@
 import { logOut } from "../modules/logout";
-import { fetchCards } from "../modules/fetchCards.js";
 import { checkCache } from "../modules/checkCache";
 
 const signOut = document.getElementById("sign-out");
@@ -17,10 +16,9 @@ join.addEventListener("click", () => {
 });
 
 window.onload = async () => {
-  let urlsToCache = [] 
-  fetchCards().then((data) => {
-    card1.style.backgroundImage = `url(${data.data.results[0].thumbnail.path}.${data.data.results[0].thumbnail.extension})`;
-    card2.style.backgroundImage = `url(${data.data.results[1].thumbnail.path}.${data.data.results[1].thumbnail.extension})`;
-    card3.style.backgroundImage = `url(${data.data.results[2].thumbnail.path}.${data.data.results[2].thumbnail.extension})`;
-  });
+  const data = await checkCache();
+
+  card1.style.backgroundImage = `url(${data.data.results[0].thumbnail.path}.${data.data.results[0].thumbnail.extension})`;
+  card2.style.backgroundImage = `url(${data.data.results[1].thumbnail.path}.${data.data.results[1].thumbnail.extension})`;
+  card3.style.backgroundImage = `url(${data.data.results[2].thumbnail.path}.${data.data.results[2].thumbnail.extension})`;
 };

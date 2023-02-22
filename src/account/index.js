@@ -2,7 +2,6 @@ import { getCurrentUser } from "../modules/currentUser.js";
 import { logOut } from "../modules/logout";
 import { fetchCards } from "../modules/fetchCards.js";
 
-
 const welcome = document.getElementById("welcome");
 const signOut = document.getElementById("sign-out");
 const creditButton = document.getElementById("credit-button");
@@ -17,12 +16,11 @@ window.onload = function checkUser() {
     redirect();
   } else {
     welcome.innerHTML = `Welcome back ${currentUser}!`;
-    updateCredis();
+    updateCredits();
   }
 };
 
-
-function updateCredis() {
+function updateCredits() {
   credits.innerHTML = userString.credits.toString();
 }
 
@@ -43,7 +41,7 @@ creditButton.addEventListener("click", () => {
 addCards.addEventListener("click", () => {
   if (userString.credits > 0) {
     userString.credits -= 1;
-    updateCredis();
+    updateCredits();
     localStorage.setItem(currentUser, JSON.stringify(userString));
     let cards = fetchCards();
     console.log(cards);
