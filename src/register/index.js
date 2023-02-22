@@ -1,8 +1,8 @@
-let username = document.getElementById("username");
-let password = document.getElementById("password");
-let userEmail = document.getElementById("email");
-let button = document.getElementById("bt");
-let warning = document.querySelector(".warning");
+const username = document.getElementById("username");
+const password = document.getElementById("password");
+const userEmail = document.getElementById("email");
+const button = document.getElementById("bt");
+const warning = document.querySelector(".warning");
 import { hashPassword } from "../modules/hashPassword.js";
 button.addEventListener("click", submit);
 
@@ -14,21 +14,24 @@ async function submit() {
     warning.style.color = "red";
     warning.innerHTML = "insert data correctly : whitespace not allowed";
   } else {
-    const hashedPassword = await hashPassword(pass);
-    alert(hashedPassword);
-    if (localStorage.getItem(user) === null) {
-      const userData = {
-        username: user,
-        password: hashedPassword,
-        stickers: [],
-        credits: 1,
-        email: email,
-      };
-      localStorage.setItem(user, JSON.stringify(userData));
-      window.location.href = "../login/index.html";
-    } else {
-      warning.style.color = "red";
-      warning.innerHTML = "user already exists";
+    try {
+      const hashedPassword = await hashPassword(pass);
+      if (localStorage.getItem(user) === null) {
+        const userData = {
+          username: user,
+          password: hashedPassword,
+          stickers: [],
+          credits: 1,
+          email: email,
+        };
+        localStorage.setItem(user, JSON.stringify(userData));
+        window.location.href = "../login/index.html";
+      } else {
+        warning.style.color = "red";
+        warning.innerHTML = "user already exists";
+      }
+    } catch (error) {
+      console.log("error has occured", error);
     }
   }
 }

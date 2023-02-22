@@ -2,12 +2,14 @@ import { getCurrentUser } from "../modules/currentUser.js";
 import { logOut } from "../modules/logout";
 import { fetchCards } from "../modules/fetchCards.js";
 
-let welcome = document.getElementById("welcome");
-let signOut = document.getElementById("sign-out");
-let creditButton = document.getElementById("credit-button");
-let credits = document.getElementById("credit");
-let addCards = document.getElementById("add-cards");
+const welcome = document.getElementById("welcome");
+const signOut = document.getElementById("sign-out");
+const creditButton = document.getElementById("credit-button");
+const credits = document.getElementById("credit");
+const addCards = document.getElementById("add-cards");
 const currentUser = getCurrentUser();
+
+let userString = JSON.parse(localStorage.getItem(currentUser));
 
 window.onload = function checkUser() {
   if (currentUser == null) {
@@ -16,8 +18,6 @@ window.onload = function checkUser() {
     welcome.innerHTML = `Welcome back ${currentUser}!`;
   }
 };
-
-let userString = JSON.parse(localStorage.getItem(currentUser));
 
 credits.innerHTML = userString.credits.toString();
 
@@ -36,6 +36,13 @@ creditButton.addEventListener("click", () => {
 });
 
 addCards.addEventListener("click", () => {
-  let cards = fetchCards();
-  console.log(cards);
+  if (userString.credits > 0) {
+    userString.credits -= 1;
+    location.reload();
+    localStorage.setItem(currentUser, JSON.stringify(userString));
+    let cards = fetchCards();
+    console.log(cards);
+  } else {
+    alert("You don't have enough credits!");
+  }
 });
