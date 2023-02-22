@@ -126,11 +126,12 @@ body {
 }
 
 .card2 {
-  background-color: white;
+  background-size: 300px;
   width: 300px;
   height: 300px;
   border-radius: 20px;
 }
+
 .card1 {
   background-size: 300px;
   width: 300px;
@@ -139,7 +140,7 @@ body {
 }
 
 .card3 {
-  background-color: white;
+  background-size: 300px;
   width: 300px;
   height: 300px;
   border-radius: 20px;
