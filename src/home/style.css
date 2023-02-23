@@ -128,6 +128,7 @@ body {
 .card2 {
   background-size: 300px;
   width: 300px;
+  opacity: 70%;
   height: 300px;
   border-radius: 20px;
 }
@@ -135,12 +136,14 @@ body {
 .card1 {
   background-size: 300px;
   width: 300px;
+  opacity: 70%;
   height: 300px;
   border-radius: 20px;
 }
 
 .card3 {
   background-size: 300px;
+  opacity: 70%;
   width: 300px;
   height: 300px;
   border-radius: 20px;
@@ -148,16 +151,19 @@ body {
 
 .card1:hover {
   transform: scale(1.075);
+  opacity: 100%;
   transition: 0.3s ease-in;
 }
 
 .card2:hover {
   transform: scale(1.075);
+  opacity: 100%;
   transition: 0.3s ease-in;
 }
 
 .card3:hover {
   transform: scale(1.075);
+  opacity: 100%;
   transition: 0.3s ease-in;
 }
 

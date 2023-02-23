@@ -20,7 +20,7 @@ async function submit() {
         const userData = {
           username: user,
           password: hashedPassword,
-          stickers: [],
+          stickers: new Array(),
           credits: 1,
           email: email,
         };
