@@ -1,56 +1,56 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link href="style.css" rel="stylesheet" />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;500&display=swap"
-      rel="stylesheet"
-    />
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css"
-      integrity="sha512-SzlrxWUlpfuzQ+pcUCosxcglQRNAq/DZjVsC0lE40xsADsfeQoEypE+enwcOiGjk/bSuGGKHEyjSoQ1zVisanQ=="
-      crossorigin="anonymous"
-      referrerpolicy="no-referrer"
-    />
-  </head>
-  <body>
-    <!--    navbar -->
-    <nav>
-      <div class="navbar">
-        <div class="icon">
-          <i class="fa-solid fa-meteor fa-2xl"></i>
-        </div>
-        <h1>SUPER HERO STICKER ALBUM</h1>
-        <ul class="navigation">
-          <li><a href="/home/index.html">Home</a></li>
-          <li><a href="../account/index.html">Account</a></li>
-          <li><a href="../login/index.html">Sign In</a></li>
-          <li id="sign-out"><a href="../home/index.html">Sign Out</a></li>
-        </ul>
-      </div>
-    </nav>
-    <!--   end  navbar -->
-    <h1 id="welcome"></h1>
-    <div class="credits">
-      <p>Total Credits</p>
-      <p id="credit"></p>
-      <button id="credit-button">Buy More</button>
-    </div>
-    <div class="account-header">
-      <h2>Album</h2>
-      <button id="add-cards">Get Cards</button>
-      <button>Exchange Cards</button>
-    </div>
-    <div id ="album" class="album">
 
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link href="style.css" rel="stylesheet" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css"
+    integrity="sha512-SzlrxWUlpfuzQ+pcUCosxcglQRNAq/DZjVsC0lE40xsADsfeQoEypE+enwcOiGjk/bSuGGKHEyjSoQ1zVisanQ=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+
+<body>
+  <!--    navbar -->
+  <nav>
+    <div class="navbar">
+      <div class="icon">
+        <i class="fa-solid fa-meteor fa-2xl"></i>
+      </div>
+      <h1>SUPER HERO STICKER ALBUM</h1>
+      <ul class="navigation">
+        <li><a href="/home/index.html">Home</a></li>
+        <li><a href="../account/index.html">Account</a></li>
+        <li><a href="../login/index.html">Sign In</a></li>
+        <li id="sign-out"><a href="../home/index.html">Sign Out</a></li>
+      </ul>
     </div>
-    <script type="module" src="index.js"></script>
-    <script type="module" src="../modules/currentUser.js"></script>
-  </body>
+  </nav>
+  <!--   end  navbar -->
+  <div class="account-header">
+    <div class="credits">
+      <p id="credit">CREDITS</p>
+      <div class="buy-button">
+        <button id="credit-button">ADD MORE</button>
+      </div>
+    </div>
+  </div>
+  <div class="album-header">
+    <h2 class="album-name" id="album-name"></h2>
+    <div class="album-buttons">
+      <button id="add-cards">GET CARDS</button>
+      <button>EXCHANGE CARDS</button>
+    </div>
+  </div>
+  <div id="album" class="album">
+
+  </div>
+  <script type="module" src="index.js"></script>
+  <script type="module" src="../modules/currentUser.js"></script>
+</body>
+
 </html>

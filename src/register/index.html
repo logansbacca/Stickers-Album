@@ -1,51 +1,58 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="./style.css" />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;500&display=swap"
-      rel="stylesheet"
-    />
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css"
-      integrity="sha512-SzlrxWUlpfuzQ+pcUCosxcglQRNAq/DZjVsC0lE40xsADsfeQoEypE+enwcOiGjk/bSuGGKHEyjSoQ1zVisanQ=="
-      crossorigin="anonymous"
-      referrerpolicy="no-referrer"
-    />
-  </head>
 
-  <body>
-    <header></header>
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="./style.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css"
+    integrity="sha512-SzlrxWUlpfuzQ+pcUCosxcglQRNAq/DZjVsC0lE40xsADsfeQoEypE+enwcOiGjk/bSuGGKHEyjSoQ1zVisanQ=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
 
-    <div class="title">
-      <h1>SUPER HERO STICKER ALBUM</h1>
-      <i id="icon" class="fa-solid fa-meteor fa-2xl"></i>
-    </div>
+<body>
+  <header></header>
 
-    <div class="wrap">
-      <form action="javascript:void(0)" class="form">
-        <div class="input-header">
-          <h1>REGISTER</h1>
-          <hr />
-        </div>
-        <div class="inputs">
-          <input id="email" placeholder="Email" type="text" />
-          <input id="username" placeholder="Username" type="text" />
-          <input id="password" placeholder="Password" type="password" />
-          <p class="warning"></p>
-        </div>
-        <div class="button">
-          <button id="bt" class="btn" type="submit">Register</button>
-        </div>
-      </form>
-    </div>
+  <div class="title">
+    <h1>SUPER HERO STICKER ALBUM</h1>
+    <i id="icon" class="fa-solid fa-meteor fa-2xl"></i>
+  </div>
 
-    <script type="module" src="index.js"></script>
-  </body>
+  <div class="wrap">
+    <form action="javascript:void(0)" class="form">
+      <div class="input-header">
+        <h1>REGISTER</h1>
+        <hr />
+      </div>
+      <div class="inputs">
+        <input id="email" placeholder="Email" type="text" />
+        <input id="username" placeholder="Username" type="text" />
+        <input id="password" placeholder="Password" type="password" />
+        <label for="cars">Choose a hero:</label>
+        <select id="sticker-selector" class="sticker-selector" name="sticker-selector">
+          <option value="spiderman">spiderman</option>
+          <option value="hulk">hulk</option>
+          <option value="iron-man">iron man</option>
+          <option value="captain-america">captain america</option>
+          <option value="black-widow">black widow</option>
+          <option value="wolverine">wolverine</option>
+          <option value="thor">thor</option>
+          <option value="black-panther">black panther</option>
+          <option value="thanos">thanos</option>
+        </select>
+        <p id ="warning" class="warning"></p>
+      </div>
+      <div class="button">
+        <button id="bt" class="btn" type="submit">Register</button>
+      </div>
+    </form>
+  </div>
+
+  <script type="module" src="index.js"></script>
+</body>
+
 </html>

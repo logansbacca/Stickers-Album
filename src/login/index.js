@@ -11,7 +11,7 @@ async function submit() {
   let pass = password.value;
   if (user.includes(" ") || pass.includes(" ")) {
     warning.style.color = "red";
-    warning.innerHTML = "no spaces allowed";
+    warning.innerText = "no spaces allowed";
   } else {
     try {
       const hashedPassword = await hashPassword(pass);
@@ -19,11 +19,11 @@ async function submit() {
       if (newUser != null && newUser.password === hashedPassword) {
         setCurrentUser(user);
         warning.style.color = "green";
-        warning.innerHTML = "login successful";
+        warning.innerText = "login successful";
         window.location.href = "../home/index.html";
       } else {
         warning.style.color = "red";
-        warning.innerHTML = "please input correct information";
+        warning.innerText = "please input correct information";
       }
     } catch (error) {
       console.log("error has occured", error);

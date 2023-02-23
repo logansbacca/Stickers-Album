@@ -2,7 +2,8 @@ const username = document.getElementById("username");
 const password = document.getElementById("password");
 const userEmail = document.getElementById("email");
 const button = document.getElementById("bt");
-const warning = document.querySelector(".warning");
+const warning = document.getElementById(".warning");
+const selector = document.getElementById(".sticker-selector");
 import { hashPassword } from "../modules/hashPassword.js";
 button.addEventListener("click", submit);
 
@@ -12,7 +13,7 @@ async function submit() {
   let pass = password.value;
   if (user.includes(" ") || pass.includes(" ") || user === "" || pass === "") {
     warning.style.color = "red";
-    warning.innerHTML = "insert data correctly : whitespace not allowed";
+    warning.innerText = "insert data correctly : whitespace not allowed";
   } else {
     try {
       const hashedPassword = await hashPassword(pass);
@@ -28,7 +29,7 @@ async function submit() {
         window.location.href = "../login/index.html";
       } else {
         warning.style.color = "red";
-        warning.innerHTML = "user already exists";
+        warning.innerText = "user already exists";
       }
     } catch (error) {
       console.log("error has occured", error);

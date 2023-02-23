@@ -1,7 +1,8 @@
 export class Card {
-  constructor(data, album) {
+  constructor(data, album,image) {
     this.data = data;
     this.album = album;
+    this.image = image;
   }
 
   createCard() {
@@ -20,7 +21,7 @@ export class Card {
 
   _fillCard(name, image, description, id) {
     name.innerText = this.getName();
-   image.src = this.getImage();  
+    image.src = this.getImage();
     description.innerText = this.getDescription();
     id = this.getID();
   }
@@ -31,7 +32,7 @@ export class Card {
   }
 
   getImage() {
-    const image = this.data.image; 
+    const image = this.image; 
     return image; 
   }
 
