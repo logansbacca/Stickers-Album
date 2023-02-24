@@ -11,7 +11,6 @@ const creditButton = document.getElementById("credit-button");
 const credits = document.getElementById("credit");
 const addCards = document.getElementById("add-cards");
 const album = document.getElementById("album");
-let firstChild = album.firstChild;
 const currentUser = getCurrentUser();
 
 let userObject = JSON.parse(localStorage.getItem(currentUser));
@@ -116,12 +115,15 @@ album.addEventListener("click", (e) => {
   if (clickedImage.tagName == "IMG" || clickedImage.tagName == "H1") {
     const parentDiv = clickedImage.parentNode;
     const myPara = parentDiv.getElementsByTagName("p")[0];
+    if (myPara.innerText.length == 0 || myPara.innerText == " ") {
+      myPara.innerText = "No description available.";
+    }
     if (myPara.style.display == "block") {
       myPara.style.display = "none";
     } else {
       myPara.style.display = "block";
     }
   } else {
-    clickedImage;
+    console.log(clickedImage);
   }
 });
