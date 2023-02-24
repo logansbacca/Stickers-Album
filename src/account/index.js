@@ -1,10 +1,9 @@
 import { getCurrentUser } from "../modules/currentUser.js";
 import { logOut } from "../modules/logout";
 import { Card } from "../modules/card.js";
-import {checkCache} from "../modules/checkCache.js";
-import {urlCharacter}  from "../modules/urlCharacter.js";
+import { checkCache } from "../modules/checkCache.js";
+import { urlCharacter } from "../modules/urlCharacter.js";
 import { urlCharacters } from "../modules/urlCharacters.js";
-
 
 const signOut = document.getElementById("sign-out");
 const albumName = document.getElementById("album-name");
@@ -14,9 +13,7 @@ const addCards = document.getElementById("add-cards");
 const album = document.getElementById("album");
 const currentUser = getCurrentUser();
 
-
 let userObject = JSON.parse(localStorage.getItem(currentUser));
-
 
 window.onload = function checkUser() {
   if (currentUser == null) {
@@ -74,7 +71,7 @@ async function getNewDeck() {
       card.createCard();
       userObject.stickers.push(newSticker);
       updateUser();
-      console.log(userObject.stickers)
+      console.log(userObject.stickers);
     }
   }
 }
@@ -102,17 +99,13 @@ function updateUser() {
   updateUser();
 } */
 
-async function setFirstCard(){
+async function setFirstCard() {
   const data = await checkCache(urlCharacter);
   const result = data.data.results[0];
-  const image = `${result.thumbnail.path}.${result.thumbnail.extension}`
+  const image = `${result.thumbnail.path}.${result.thumbnail.extension}`;
   const card = new Card(result, album, image);
   card.createCard();
-  card.getCard();
-  userObject.stickers.push(card);
+  const toStorage = card.getCard();
+  userObject.stickers.push(toStorage);
   updateUser();
-  localStorage.getItem(currentUser.stickers);
-
 }
-
-setFirstCard();

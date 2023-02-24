@@ -1,9 +1,8 @@
-import { urlCharacters } from "./urlCharacters";
 
-export async function fetchCards() {
-  const fetchUrl = urlCharacters;
+
+export async function fetchCards(url) {
   try {
-    let res = await fetch(fetchUrl);
+    let res = await fetch(url);
     let data = await res.json();
     console.log(data);
     return data;

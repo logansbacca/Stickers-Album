@@ -12,7 +12,7 @@ export async function checkCache(url) {
       return responseData;
     } else {
       cache.add(request);
-      return await fetchCards();
+      return await fetchCards(url);
     }
   } catch (error) {
     console.log("there was an error", error);
