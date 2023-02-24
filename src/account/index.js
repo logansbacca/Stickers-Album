@@ -53,7 +53,7 @@ addCards.addEventListener("click", () => {
     updateUser();
     getNewDeck();
   } else {
-    setFirstCard();
+    alert("You don't have enough credits!");
   }
 });
 
@@ -74,6 +74,7 @@ async function getNewDeck() {
       card.createCard();
       userObject.stickers.push(newSticker);
       updateUser();
+      console.log(userObject.stickers)
     }
   }
 }
@@ -107,4 +108,11 @@ async function setFirstCard(){
   const image = `${result.thumbnail.path}.${result.thumbnail.extension}`
   const card = new Card(result, album, image);
   card.createCard();
+  card.getCard();
+  userObject.stickers.push(card);
+  updateUser();
+  localStorage.getItem(currentUser.stickers);
+
 }
+
+setFirstCard();
