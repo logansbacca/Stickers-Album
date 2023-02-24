@@ -1,5 +1,5 @@
 export class Card {
-  constructor(data, album,image) {
+  constructor(data, album, image) {
     this.data = data;
     this.album = album;
     this.image = image;
@@ -32,8 +32,8 @@ export class Card {
   }
 
   getImage() {
-    const image = this.image; 
-    return image; 
+    const image = this.image;
+    return image;
   }
 
   getDescription() {

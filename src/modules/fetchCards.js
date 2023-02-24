@@ -1,7 +1,7 @@
-import { url } from "./url";
+import { urlCharacters } from "./urlCharacters";
 
 export async function fetchCards() {
-  const fetchUrl = url;
+  const fetchUrl = urlCharacters;
   try {
     let res = await fetch(fetchUrl);
     let data = await res.json();

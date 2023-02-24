@@ -1,5 +1,6 @@
 import { logOut } from "../modules/logout";
 import { checkCache } from "../modules/checkCache";
+import { urlCharacters } from "../modules/urlCharacters.js";
 
 const signOut = document.getElementById("sign-out");
 const join = document.getElementById("join");
@@ -16,7 +17,7 @@ join.addEventListener("click", () => {
 });
 
 window.onload = async () => {
-  const data = await checkCache();
+  const data = await checkCache(urlCharacters);
   card1.style.backgroundImage = `url(${data.data.results[0].thumbnail.path}.${data.data.results[0].thumbnail.extension})`;
   card2.style.backgroundImage = `url(${data.data.results[1].thumbnail.path}.${data.data.results[1].thumbnail.extension})`;
   card3.style.backgroundImage = `url(${data.data.results[6].thumbnail.path}.${data.data.results[6].thumbnail.extension})`;

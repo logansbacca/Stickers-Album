@@ -1,7 +1,9 @@
 import { getCurrentUser } from "../modules/currentUser.js";
 import { logOut } from "../modules/logout";
-import { checkCache } from "../modules/checkCache.js";
 import { Card } from "../modules/card.js";
+import {checkCache} from "../modules/checkCache.js";
+import {urlCharacter}  from "../modules/urlCharacter.js";
+import { urlCharacters } from "../modules/urlCharacters.js";
 
 
 const signOut = document.getElementById("sign-out");
@@ -14,6 +16,7 @@ const currentUser = getCurrentUser();
 
 
 let userObject = JSON.parse(localStorage.getItem(currentUser));
+
 
 window.onload = function checkUser() {
   if (currentUser == null) {
@@ -50,13 +53,13 @@ addCards.addEventListener("click", () => {
     updateUser();
     getNewDeck();
   } else {
-    alert("You don't have enough credits!");
+    setFirstCard();
   }
 });
 
- async function getNewDeck() {
-  const data = await checkCache();
+async function getNewDeck() {
   for (let i = 0; i < 5; i++) {
+    const data = await checkCache(urlCharacters);
     const index = Math.floor(Math.random() * 100);
     const result = data.data.results[index];
     const image = `${result.thumbnail.path}.${result.thumbnail.extension}`;
@@ -84,18 +87,24 @@ async function displayAlbum() {
       card.createCard();
     }
   } else {
-    ("you dont have any stickers yet!");
+    setFirstCard();
   }
-} 
+}
 
 function updateUser() {
   localStorage.setItem(currentUser, JSON.stringify(userObject));
 }
 
-
-function clearSticker(){
+/* function clearSticker() {
   userObject.stickers = [];
   localStorage.setItem(currentUser, JSON.stringify(userObject));
   updateUser();
-}
+} */
 
+async function setFirstCard(){
+  const data = await checkCache(urlCharacter);
+  const result = data.data.results[0];
+  const image = `${result.thumbnail.path}.${result.thumbnail.extension}`
+  const card = new Card(result, album, image);
+  card.createCard();
+}

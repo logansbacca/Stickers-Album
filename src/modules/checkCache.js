@@ -1,7 +1,7 @@
 import { fetchCards } from "./fetchCards.js";
-import { url } from "./url.js";
 
-export async function checkCache() {
+
+export async function checkCache(url) {
   try {
     const cache = await caches.open("my-cache");
     const request = new Request(url);
