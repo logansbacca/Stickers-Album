@@ -27,7 +27,7 @@ async function submit() {
         warning.innerText = "please input correct information";
       }
     } catch (error) {
-      console.log("error has occured", error);
+      ("error has occured", error);
     }
   }
 }

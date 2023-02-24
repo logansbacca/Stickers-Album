@@ -36,7 +36,7 @@ async function submit() {
         warning.innerText = "user already exists";
       }
     } catch (error) {
-      console.log("error has occured", error);
+      ("error has occured", error);
     }
   }
 }

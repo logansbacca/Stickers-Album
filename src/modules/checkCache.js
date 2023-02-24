@@ -8,13 +8,13 @@ export async function checkCache(url) {
     const data = await cache.match(url);
     if (data) {
       const responseData = await data.json();
-      console.log(responseData)
+      (responseData)
       return responseData;
     } else {
       cache.add(request);
       return await fetchCards(url);
     }
   } catch (error) {
-    console.log("there was an error", error);
+    ("there was an error", error);
   }
 }

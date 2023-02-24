@@ -11,6 +11,7 @@ const creditButton = document.getElementById("credit-button");
 const credits = document.getElementById("credit");
 const addCards = document.getElementById("add-cards");
 const album = document.getElementById("album");
+let firstChild = album.firstChild;
 const currentUser = getCurrentUser();
 
 let userObject = JSON.parse(localStorage.getItem(currentUser));
@@ -71,7 +72,7 @@ async function getNewDeck() {
       card.createCard();
       userObject.stickers.push(newSticker);
       updateUser();
-      console.log(userObject.stickers);
+      userObject.stickers;
     }
   }
 }
@@ -80,7 +81,7 @@ async function displayAlbum() {
   if (userObject.stickers.length > 0) {
     for (let i = 0; i < userObject.stickers.length; i++) {
       const image = userObject.stickers[i].image;
-      console.log(userObject.stickers[i]);
+      userObject.stickers[i];
       const card = new Card(userObject.stickers[i], album, image);
       card.createCard();
     }
@@ -109,3 +110,18 @@ async function setFirstCard() {
   userObject.stickers.push(toStorage);
   updateUser();
 }
+
+album.addEventListener("click", (e) => {
+  const clickedImage = e.target;
+  if (clickedImage.tagName == "IMG" || clickedImage.tagName == "H1") {
+    const parentDiv = clickedImage.parentNode;
+    const myPara = parentDiv.getElementsByTagName("p")[0];
+    if (myPara.style.display == "block") {
+      myPara.style.display = "none";
+    } else {
+      myPara.style.display = "block";
+    }
+  } else {
+    clickedImage;
+  }
+});

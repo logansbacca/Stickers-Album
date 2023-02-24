@@ -71,9 +71,16 @@ body {
   width: 400px;
 }
 
+
+
 .album img {
+  border-radius: 30px;
   height: 300px;
   width: 300px;
+}
+
+.album img:hover{
+  border: solid white 4px;
 }
 
 .album h1 {
