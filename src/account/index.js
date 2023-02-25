@@ -39,6 +39,7 @@ function redirect() {
 
 creditButton.addEventListener("click", () => {
   userObject.credits += 1;
+  credits.style.color = "white";
   localStorage.setItem(currentUser, JSON.stringify(userObject));
   updateCredits();
 });
@@ -50,9 +51,16 @@ addCards.addEventListener("click", () => {
     updateUser();
     getNewDeck();
   } else {
-    alert("You don't have enough credits!");
+    notEnoughCredits();
   }
 });
+
+function notEnoughCredits() {
+  credits.style.color = "red";
+  credits.style.animation = "none"; // reset the animation
+  void credits.offsetWidth; // trigger reflow to restart the animation
+  credits.style.animation = "horizontal-shaking 0.35s ";
+}
 
 async function getNewDeck() {
   for (let i = 0; i < 5; i++) {
