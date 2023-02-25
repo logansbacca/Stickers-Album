@@ -14,7 +14,7 @@ export class Card {
     $card.appendChild($name);
     $card.appendChild($image);
     $card.appendChild($description);
-    this.album.appendChild($card);
+    this.album.insertBefore($card, this.album.firstChild);
     this._fillCard($name, $image, $description, id);
     return $card;
   }
