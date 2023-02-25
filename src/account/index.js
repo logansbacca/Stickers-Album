@@ -115,15 +115,16 @@ album.addEventListener("click", (e) => {
   if (clickedImage.tagName == "IMG" || clickedImage.tagName == "H1") {
     const parentDiv = clickedImage.parentNode;
     const myPara = parentDiv.getElementsByTagName("p")[0];
+    const myImg = parentDiv.getElementsByTagName("IMG")[0];
+    myImg.style.opacity = "0.2";
     if (myPara.innerText.length == 0 || myPara.innerText == " ") {
       myPara.innerText = "No description available.";
     }
     if (myPara.style.display == "block") {
       myPara.style.display = "none";
+      myImg.style.opacity = "1";
     } else {
       myPara.style.display = "block";
     }
-  } else {
-    console.log(clickedImage);
   }
 });

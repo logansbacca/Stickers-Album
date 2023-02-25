@@ -16,7 +16,10 @@ async function submit() {
   if (user.includes(" ") || pass.includes(" ") || user === "" || pass === "") {
     warning.style.color = "red";
     warning.innerText = "insert data correctly : whitespace not allowed";
-  } else {
+  } else if (!email.includes("@") || !email.includes(".")) {
+    warning.style.color = "red";
+    warning.innerText = "insert data correctly : email not valid";
+  }else {
     try {
       const hashedPassword = await hashPassword(pass);
       if (localStorage.getItem(user) === null) {
