@@ -18,7 +18,7 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 72%;
+  height: 80%;
   width: 100%;
   position: absolute;
 }
@@ -28,7 +28,7 @@ body {
   border-radius: 6px;
   padding: 20px;
   width: 45vh;
-  height: 55vh;
+  height: 65vh;
   border: 1px solid #ddd;
 }
 
