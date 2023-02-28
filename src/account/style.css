@@ -200,28 +200,28 @@ body {
 }
 
 @media screen and (max-width: 767px) {
-
+  body{
+    overflow-x: none;
+  }
 
   .navbar {
-    flex: 1; 
     height: 20vh;
     display: flex;
+    flex-direction: column;
   }
-  
 
-  .fa-solid {
+  .fa-solid{
     visibility: hidden;
   }
 
   .navbar h1 {
     display: flex;
-    color: white;
+    color:white;
     justify-content: center;
-    align-items: center;
   }
 
   .navigation {
-    flex-direction: column;
+    flex-direction: row;
     margin-top: 10px;
   }
 
