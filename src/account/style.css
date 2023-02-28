@@ -71,7 +71,6 @@ body {
   width: 400px;
 }
 
-
 .album img {
   position: absolute;
   border-radius: 30px;
@@ -79,7 +78,7 @@ body {
   width: 300px;
 }
 
-.album img:hover{
+.album img:hover {
   border: solid white 4px;
 }
 
@@ -94,7 +93,7 @@ body {
   display: none;
   width: 70%;
   height: 30%;
-  top: -1rem; 
+  top: -1rem;
   color: white;
   font-weight: 300;
   cursor: default;
@@ -155,7 +154,7 @@ body {
 }
 
 .album-buttons {
-  white-space:nowrap;
+  white-space: nowrap;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -182,11 +181,51 @@ body {
   border: solid 0.2vh white;
 }
 
-
 @keyframes horizontal-shaking {
-  0% { transform: translateX(0) }
-  25% { transform: translateX(5px) }
-  50% { transform: translateX(-5px) }
-  75% { transform: translateX(5px) }
-  100% { transform: translateX(0) }
+  0% {
+    transform: translateX(0);
+  }
+  25% {
+    transform: translateX(5px);
+  }
+  50% {
+    transform: translateX(-5px);
+  }
+  75% {
+    transform: translateX(5px);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+
+@media screen and (max-width: 767px) {
+
+
+  .navbar {
+    flex: 1; 
+    height: 20vh;
+    display: flex;
+  }
+  
+
+  .fa-solid {
+    visibility: hidden;
+  }
+
+  .navbar h1 {
+    display: flex;
+    color: white;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .navigation {
+    flex-direction: column;
+    margin-top: 10px;
+  }
+
+  .navigation li {
+    margin-bottom: 10px;
+  }
 }
