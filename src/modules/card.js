@@ -10,26 +10,33 @@ export class Card {
     const $name = document.createElement("h1");
     const $description = document.createElement("p");
     const $image = document.createElement("img");
+    const $series = document.createElement("ul");
+    const $seriesElement = $series.appendChild(document.createElement("li"));
     const id = "";
     $card.appendChild($name);
     $card.appendChild($image);
     $card.appendChild($description);
+    $card.appendChild($series);
     this.album.insertBefore($card, this.album.firstChild);
-    this._fillCard($name, $image, $description, id);
+    this._fillCard($name, $image, $description, id, $seriesElement);
     return $card;
   }
 
-  _fillCard(name, image, description, id) {
+  _fillCard(name, image, description, id, $seriesElement) {
     name.innerText = this.getName();
     image.src = this.getImage();
     description.innerText = this.getDescription();
     id = this.getID();
+ 
+ 
   }
 
   getName() {
     const name = this.data.name;
     return name;
   }
+
+
 
   getImage() {
     const image = this.image;

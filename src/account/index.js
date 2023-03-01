@@ -68,7 +68,10 @@ async function getNewDeck() {
     const index = Math.floor(Math.random() * 100);
     const result = data.data.results[index];
     const image = `${result.thumbnail.path}.${result.thumbnail.extension}`;
-    let card = new Card(result, album, image);
+    const series = data.data.results[index].series
+    const events = data.data.results[index].events.items
+    const comics = data.data.results[index].comics.items
+    let card = new Card(result, album, image,series,events,comics);
     const newSticker = card.getCard();
     if (
       newSticker.description == "" ||
