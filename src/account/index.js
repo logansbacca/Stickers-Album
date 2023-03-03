@@ -68,11 +68,11 @@ async function getNewDeck() {
     const index = Math.floor(Math.random() * 100);
     const result = data.data.results[index];
     const image = `${result.thumbnail.path}.${result.thumbnail.extension}`;
-    const series = data.data.results[index].series
-    const events = data.data.results[index].events.items
-    const comics = data.data.results[index].comics.items
-    let card = new Card(result, album, image,series,events,comics);
-    const newSticker = card.getCard();
+    const series = data.data.results[index].series.items;
+    const events = data.data.results[index].events.items;
+    const comics = data.data.results[index].comics.items;
+    let card = new Card(result, album, image, series, events, comics);
+    const newSticker = card.getCard(); 
     if (
       newSticker.description == "" ||
       newSticker.image.includes("image_not_available")
@@ -81,19 +81,22 @@ async function getNewDeck() {
     } else {
       card.createCard();
       userObject.stickers.push(newSticker);
-      updateUser();
-      userObject.stickers;
-    }
+      updateUser();      
+      console.log(userObject.stickers)
+    } 
   }
 }
 
 async function displayAlbum() {
+  console.log("displaying album")
   if (userObject.stickers.length > 0) {
     for (let i = 0; i < userObject.stickers.length; i++) {
       const image = userObject.stickers[i].image;
-      userObject.stickers[i];
-      const card = new Card(userObject.stickers[i], album, image);
-      card.createCard();
+      const series = userObject.stickers[i].series
+      const events = userObject.stickers[i].events
+      const comics = userObject.stickers[i].comics
+      const card = new Card(userObject.stickers[i], album, image,series,events,comics);  
+      card.createCard();  
     }
   } else {
     setFirstCard();
@@ -108,13 +111,20 @@ function updateUser() {
   userObject.stickers = [];
   localStorage.setItem(currentUser, JSON.stringify(userObject));
   updateUser();
+  displayAlbum();
 } */
 
+
+
 async function setFirstCard() {
+  console.log("setting first")
   const data = await checkCache(urlCharacter);
   const result = data.data.results[0];
   const image = `${result.thumbnail.path}.${result.thumbnail.extension}`;
-  const card = new Card(result, album, image);
+  const series = data.data.results[0].series.items
+  const events = data.data.results[0].events.items;
+  const comics = data.data.results[0].comics.items;
+  const card = new Card(result, album, image,series, events,comics);
   card.createCard();
   const toStorage = card.getCard();
   userObject.stickers.push(toStorage);
@@ -139,3 +149,4 @@ album.addEventListener("click", (e) => {
     }
   }
 });
+
