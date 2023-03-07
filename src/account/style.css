@@ -64,7 +64,8 @@ body {
 }
 
 .album div {
-  display: flex;
+  max-width: 500px;
+  text-align: center;
   align-items: center;
   flex-direction: column;
   height: 400px;
@@ -72,7 +73,6 @@ body {
 }
 
 .album img {
-  position: absolute;
   border-radius: 30px;
   height: 300px;
   width: 300px;
@@ -83,20 +83,26 @@ body {
 }
 
 .album h1 {
-  position: relative;
-  top: -5rem;
   justify-content: center;
 }
 
 .album p {
-  position: relative;
   display: none;
-  width: 70%;
-  height: 30%;
-  top: -1rem;
+  width: 100%;
   color: white;
   font-weight: 300;
   cursor: default;
+}
+
+.album ul{
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.card p {
+  font-size: 2.5vh;
+ max-width: 500px;
 }
 
 .account-header {
@@ -110,11 +116,18 @@ body {
   width: 50%;
 }
 
+
 .credits p {
   display: flex;
   justify-content: end;
   width: 90%;
   font-size: 3vh;
+}
+
+
+.card h2{
+  display:none;
+  color: lightgrey;
 }
 
 .buy-button {
@@ -200,7 +213,7 @@ body {
 }
 
 @media screen and (max-width: 767px) {
-  body{
+  body {
     overflow-x: none;
   }
 
@@ -210,13 +223,13 @@ body {
     flex-direction: column;
   }
 
-  .fa-solid{
+  .fa-solid {
     visibility: hidden;
   }
 
   .navbar h1 {
     display: flex;
-    color:white;
+    color: white;
     justify-content: center;
   }
 

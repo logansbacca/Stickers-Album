@@ -72,7 +72,7 @@ async function getNewDeck() {
     const events = data.data.results[index].events.items;
     const comics = data.data.results[index].comics.items;
     let card = new Card(result, album, image, series, events, comics);
-    const newSticker = card.getCard(); 
+    const newSticker = card.getCard();
     if (
       newSticker.description == "" ||
       newSticker.image.includes("image_not_available")
@@ -81,22 +81,29 @@ async function getNewDeck() {
     } else {
       card.createCard();
       userObject.stickers.push(newSticker);
-      updateUser();      
-      console.log(userObject.stickers)
-    } 
+      updateUser();
+      console.log(userObject.stickers);
+    }
   }
 }
 
 async function displayAlbum() {
-  console.log("displaying album")
+  console.log("displaying album");
   if (userObject.stickers.length > 0) {
     for (let i = 0; i < userObject.stickers.length; i++) {
       const image = userObject.stickers[i].image;
-      const series = userObject.stickers[i].series
-      const events = userObject.stickers[i].events
-      const comics = userObject.stickers[i].comics
-      const card = new Card(userObject.stickers[i], album, image,series,events,comics);  
-      card.createCard();  
+      const series = userObject.stickers[i].series;
+      const events = userObject.stickers[i].events;
+      const comics = userObject.stickers[i].comics;
+      const card = new Card(
+        userObject.stickers[i],
+        album,
+        image,
+        series,
+        events,
+        comics
+      );
+      card.createCard();
     }
   } else {
     setFirstCard();
@@ -114,39 +121,126 @@ function updateUser() {
   displayAlbum();
 } */
 
-
-
 async function setFirstCard() {
-  console.log("setting first")
+  console.log("setting first");
   const data = await checkCache(urlCharacter);
   const result = data.data.results[0];
   const image = `${result.thumbnail.path}.${result.thumbnail.extension}`;
-  const series = data.data.results[0].series.items
+  const series = data.data.results[0].series.items;
   const events = data.data.results[0].events.items;
   const comics = data.data.results[0].comics.items;
-  const card = new Card(result, album, image,series, events,comics);
+  const card = new Card(result, album, image, series, events, comics);
   card.createCard();
   const toStorage = card.getCard();
   userObject.stickers.push(toStorage);
   updateUser();
 }
 
+let isOpen = false;
+
 album.addEventListener("click", (e) => {
   const clickedImage = e.target;
+  console.log(clickedImage);
   if (clickedImage.tagName == "IMG" || clickedImage.tagName == "H1") {
     const parentDiv = clickedImage.parentNode;
     const myPara = parentDiv.getElementsByTagName("p")[0];
     const myImg = parentDiv.getElementsByTagName("IMG")[0];
-    myImg.style.opacity = "0.2";
+    const description = parentDiv.querySelector("#description");
+    const seriesList = parentDiv.querySelector("#seriesList");
+    const seriesTitle = parentDiv.querySelector("#seriesTitle");
+    const eventsList = parentDiv.querySelector("#eventsList");
+    const eventsTitle = parentDiv.querySelector("#eventsTitle");
+    const comicsTitle = parentDiv.querySelector("#comicsTitle");
+    const comicsList = parentDiv.querySelector("#comicsList");
+    console.log(seriesList);
     if (myPara.innerText.length == 0 || myPara.innerText == " ") {
       myPara.innerText = "No description available.";
     }
-    if (myPara.style.display == "block") {
-      myPara.style.display = "none";
-      myImg.style.opacity = "1";
-    } else {
-      myPara.style.display = "block";
+    console.log(isOpen);
+    //why this one is better than regular display none
+    if (getComputedStyle(myPara).display == "none" && !isOpen) {
+      isOpen = true;
+      enlargeDiv(
+        myPara,
+        myImg,
+        parentDiv,
+        description,
+        seriesList,
+        eventsList,
+        comicsList,
+        seriesTitle,
+        eventsTitle,
+        comicsTitle
+      );
+    } else if (getComputedStyle(myPara).display == "block" && isOpen) {
+      isOpen = false;
+      revertDiv(
+        myPara,
+        parentDiv,
+        description,
+        seriesList,
+        eventsList,
+        comicsList,
+        seriesTitle,
+        eventsTitle,
+        comicsTitle
+      );
     }
   }
 });
 
+function enlargeDiv(
+  myPara,
+  myImg,
+  parentDiv,
+  description,
+  seriesList,
+  eventsList,
+  comicsList,
+  seriesTitle,
+  eventsTitle,
+  comicsTitle
+) {
+  eventsList.style.display = "block";
+  comicsList.style.display = "block";
+  seriesList.style.display = "block";
+  description.style.display = "block";
+  seriesTitle.style.display = "block";
+  eventsTitle.style.display = "block";
+  comicsTitle.style.display = "block";
+  myPara.style.display = "block";
+  myImg.style.opacity = "1";
+  parentDiv.style.height = "500px";
+  parentDiv.style.overflowY = "scroll";
+  parentDiv.style.width = "100%";
+  parentDiv.style.border = "solid 0.2vh #009acd";
+  parentDiv.style.borderRadius = "1vh";
+  
+}
+
+function revertDiv(
+  myPara,
+  parentDiv,
+  description,
+  seriesList,
+  eventsList,
+  comicsList,
+  seriesTitle,
+  eventsTitle,
+  comicsTitle
+
+) {
+  seriesList.style.display = "none";
+  description.style.display = "none";
+  eventsList.style.display = "none";
+  comicsList.style.display = "none";
+  seriesTitle.style.display = "none";
+  eventsTitle.style.display = "none";
+  comicsTitle.style.display = "none";
+  myPara.style.display = "none";
+  parentDiv.style.height = "400px";
+  parentDiv.style.overflowY = "hidden";
+  parentDiv.style.width = "400px";
+  parentDiv.style.background = "black";
+  parentDiv.style.border = "none";
+}
