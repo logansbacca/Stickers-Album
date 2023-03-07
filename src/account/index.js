@@ -155,8 +155,21 @@ album.addEventListener("click", (e) => {
     console.log(seriesList);
     if (myPara.innerText.length == 0 || myPara.innerText == " ") {
       myPara.innerText = "No description available.";
+   
     }
-    console.log(isOpen);
+    if (seriesList.innerText.length == 0 || seriesList.innerText == " ") {
+      seriesList.innerText = "No series available.";
+      console.log("none")
+    }
+   if (eventsList.innerText.length == 0 || eventsList.innerText == " ") {
+      eventsList.innerText = "No events available.";
+      console.log("none")
+    }
+    if (comicsList.innerText.length == 0 || comicsList.innerText == " ") {  
+      comicsList.innerText = "No comics available.";
+      console.log("none")
+    }
+
     //why this one is better than regular display none
     if (getComputedStyle(myPara).display == "none" && !isOpen) {
       isOpen = true;
