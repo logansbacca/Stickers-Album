@@ -125,12 +125,11 @@ input {
   font-size: 12px;
 }
 
-
-.sticker-selector{
+.sticker-selector {
   background-color: black;
   outline: none;
-  color:white;
+  color: white;
   font-size: 300;
   font-family: "Oswald", sans-serif;
-  border:none;
+  border: none;
 }

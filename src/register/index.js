@@ -19,7 +19,7 @@ async function submit() {
   } else if (!email.includes("@") || !email.includes(".")) {
     warning.style.color = "red";
     warning.innerText = "insert data correctly : email not valid";
-  }else {
+  } else {
     try {
       const hashedPassword = await hashPassword(pass);
       if (localStorage.getItem(user) === null) {
@@ -33,16 +33,12 @@ async function submit() {
         };
         localStorage.setItem(user, JSON.stringify(userData));
         window.location.href = "../login/index.html";
-
       } else {
         warning.style.color = "red";
         warning.innerText = "user already exists";
       }
     } catch (error) {
-      ("error has occured", error);
+      "error has occured", error;
     }
   }
 }
-
-
-

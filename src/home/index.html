@@ -1,72 +1,78 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link href="style.css" rel="stylesheet" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;500&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css"
+      integrity="sha512-SzlrxWUlpfuzQ+pcUCosxcglQRNAq/DZjVsC0lE40xsADsfeQoEypE+enwcOiGjk/bSuGGKHEyjSoQ1zVisanQ=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+  </head>
 
-<head>
-  <meta charset="UTF-8" />
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Document</title>
-  <link href="style.css" rel="stylesheet" />
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;500&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css"
-    integrity="sha512-SzlrxWUlpfuzQ+pcUCosxcglQRNAq/DZjVsC0lE40xsADsfeQoEypE+enwcOiGjk/bSuGGKHEyjSoQ1zVisanQ=="
-    crossorigin="anonymous" referrerpolicy="no-referrer" />
-</head>
-
-<body class="body">
-  <!-- navbar -->
-  <nav>
-    <div class="navbar">
-      <div class="icon">
-        <i class="fa-solid fa-meteor fa-2xl"></i>
+  <body class="body">
+    <!-- navbar -->
+    <nav>
+      <div class="navbar">
+        <div class="icon">
+          <i class="fa-solid fa-meteor fa-2xl"></i>
+        </div>
+        <h1>SUPER HERO STICKER ALBUM</h1>
+        <ul class="navigation">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="../account/index.html">Account</a></li>
+          <li><a href="../login/index.html">Sign In</a></li>
+          <li id="sign-out"><a href="../home/index.html">Sign Out</a></li>
+        </ul>
       </div>
-      <h1>SUPER HERO STICKER ALBUM</h1>
-      <ul class="navigation">
-        <li><a href="index.html">Home</a></li>
-        <li><a href="../account/index.html">Account</a></li>
-        <li><a href="../login/index.html">Sign In</a></li>
-        <li id="sign-out"><a href="../home/index.html">Sign Out</a></li>
-      </ul>
+    </nav>
+    <!--   end  navbar -->
+    <div class="background-img">
+      <button id="join" class="join-btn">JOIN</button>
     </div>
-  </nav>
-  <!--   end  navbar -->
-  <div class="background-img">
-    <button id="join" class="join-btn">JOIN</button>
-  </div>
 
-  <div class="about">
-    <h1>OUR MISSION</h1>
-    <hr />
-    <p>
-      We provide a unique way to collect and trade your favorite superhero
-      stickers. Join us on the best entertainment experience for those who
-      love collecting stickers and start creating your digital superhero
-      sticker album today.
-    </p>
-    <div class="cards">
-      <div id="card1" class="card1"></div>
-      <div id="card2" class="card2"></div>
-      <div id="card3" class="card3"></div>
-    </div>
-  </div>
-
-  <footer>
-    <div class="footer">
-      <div class="footer-header">
-        <h1>SUPERHERO STICKER ALBUM</h1>
-        <hr />
-      </div>
-      <div class="copyright">
-        <span>© 2023</span>
-        <a href="https://github.com/logansbacca/Stickers-Album"><img class="footer-img"
-            src="../assets/github.png" /></a>
+    <div class="about">
+      <h1>OUR MISSION</h1>
+      <hr />
+      <p>
+        We provide a unique way to collect and trade your favorite superhero
+        stickers. Join us on the best entertainment experience for those who
+        love collecting stickers and start creating your digital superhero
+        sticker album today.
+      </p>
+      <div class="cards">
+        <div id="card1" class="card1"></div>
+        <div id="card2" class="card2"></div>
+        <div id="card3" class="card3"></div>
       </div>
     </div>
-  </footer>
 
-  <script type="module" src="index.js"></script>
-</body>
+    <footer>
+      <div class="footer">
+        <div class="footer-header">
+          <h1>SUPERHERO STICKER ALBUM</h1>
+          <hr />
+        </div>
+        <div class="copyright">
+          <span>© 2023</span>
+          <a href="https://github.com/logansbacca/Stickers-Album"
+            ><img class="footer-img" src="../assets/github.png"
+          /></a>
+        </div>
+      </div>
+    </footer>
 
+    <script type="module" src="index.js"></script>
+  </body>
 </html>

@@ -247,10 +247,10 @@ footer {
     visibility: hidden;
   }
 
-  .body{
+  .body {
     overflow: none;
   }
- 
+
   .about h1 {
     margin-top: 100px;
     font-size: 45px;
@@ -265,21 +265,20 @@ footer {
 }
 
 @media screen and (max-width: 767px) {
-
   .navbar {
     height: 20vh;
     display: flex;
     flex-direction: column;
-    overflow-y: auto; 
+    overflow-y: auto;
   }
 
-  .fa-solid{
+  .fa-solid {
     visibility: hidden;
   }
 
   .navbar h1 {
     display: flex;
-    color:white;
+    color: white;
     justify-content: center;
   }
 

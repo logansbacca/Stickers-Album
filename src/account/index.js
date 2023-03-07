@@ -82,13 +82,13 @@ async function getNewDeck() {
       card.createCard();
       userObject.stickers.push(newSticker);
       updateUser();
-      console.log(userObject.stickers);
+      userObject.stickers;
     }
   }
 }
 
 async function displayAlbum() {
-  console.log("displaying album");
+  ("displaying album");
   if (userObject.stickers.length > 0) {
     for (let i = 0; i < userObject.stickers.length; i++) {
       const image = userObject.stickers[i].image;
@@ -122,7 +122,7 @@ function updateUser() {
 } */
 
 async function setFirstCard() {
-  console.log("setting first");
+  ("setting first");
   const data = await checkCache(urlCharacter);
   const result = data.data.results[0];
   const image = `${result.thumbnail.path}.${result.thumbnail.extension}`;
@@ -140,7 +140,7 @@ let isOpen = false;
 
 album.addEventListener("click", (e) => {
   const clickedImage = e.target;
-  console.log(clickedImage);
+  clickedImage;
   if (clickedImage.tagName == "IMG" || clickedImage.tagName == "H1") {
     const parentDiv = clickedImage.parentNode;
     const myPara = parentDiv.getElementsByTagName("p")[0];
@@ -152,22 +152,18 @@ album.addEventListener("click", (e) => {
     const eventsTitle = parentDiv.querySelector("#eventsTitle");
     const comicsTitle = parentDiv.querySelector("#comicsTitle");
     const comicsList = parentDiv.querySelector("#comicsList");
-    console.log(seriesList);
+    seriesList;
     if (myPara.innerText.length == 0 || myPara.innerText == " ") {
       myPara.innerText = "No description available.";
-   
     }
     if (seriesList.innerText.length == 0 || seriesList.innerText == " ") {
       seriesList.innerText = "No series available.";
-      console.log("none")
     }
-   if (eventsList.innerText.length == 0 || eventsList.innerText == " ") {
+    if (eventsList.innerText.length == 0 || eventsList.innerText == " ") {
       eventsList.innerText = "No events available.";
-      console.log("none")
     }
-    if (comicsList.innerText.length == 0 || comicsList.innerText == " ") {  
+    if (comicsList.innerText.length == 0 || comicsList.innerText == " ") {
       comicsList.innerText = "No comics available.";
-      console.log("none")
     }
 
     //why this one is better than regular display none
@@ -223,12 +219,14 @@ function enlargeDiv(
   comicsTitle.style.display = "block";
   myPara.style.display = "block";
   myImg.style.opacity = "1";
+  myImg.addEventListener("mouseover", function() {
+    myImg.style.border = "none";
+  });
   parentDiv.style.height = "500px";
   parentDiv.style.overflowY = "scroll";
   parentDiv.style.width = "100%";
   parentDiv.style.border = "solid 0.2vh #009acd";
   parentDiv.style.borderRadius = "1vh";
-  
 }
 
 function revertDiv(
@@ -241,7 +239,6 @@ function revertDiv(
   seriesTitle,
   eventsTitle,
   comicsTitle
-
 ) {
   seriesList.style.display = "none";
   description.style.display = "none";
@@ -256,4 +253,7 @@ function revertDiv(
   parentDiv.style.width = "400px";
   parentDiv.style.background = "black";
   parentDiv.style.border = "none";
+  myImg.addEventListener("mouseover", function() {
+    myImg.style.border = "solid white 4px";
+  });
 }

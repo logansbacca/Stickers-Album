@@ -1,6 +1,5 @@
 import { fetchCards } from "./fetchCards.js";
 
-
 export async function checkCache(url) {
   try {
     const cache = await caches.open("my-cache");
@@ -8,13 +7,13 @@ export async function checkCache(url) {
     const data = await cache.match(url);
     if (data) {
       const responseData = await data.json();
-      (responseData)
+      responseData;
       return responseData;
     } else {
       cache.add(request);
       return await fetchCards(url);
     }
   } catch (error) {
-    ("there was an error", error);
+    "there was an error", error;
   }
 }

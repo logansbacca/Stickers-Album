@@ -94,7 +94,7 @@ body {
   cursor: default;
 }
 
-.album ul{
+.album ul {
   list-style: none;
   margin: 0;
   padding: 0;
@@ -102,7 +102,7 @@ body {
 
 .card p {
   font-size: 2.5vh;
- max-width: 500px;
+  max-width: 500px;
 }
 
 .account-header {
@@ -116,7 +116,6 @@ body {
   width: 50%;
 }
 
-
 .credits p {
   display: flex;
   justify-content: end;
@@ -124,9 +123,8 @@ body {
   font-size: 3vh;
 }
 
-
-.card h2{
-  display:none;
+.card h2 {
+  display: none;
   color: lightgrey;
 }
 
