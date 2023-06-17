@@ -1,0 +1,141 @@
+/* navbar */
+
+html {
+    box-sizing: border-box;
+    font-family: "Oswald", sans-serif;
+  }
+  body {
+    margin: 0;
+    padding: 0;
+    background-color: black;
+    color: white;
+  }
+  
+  .navbar {
+    height: 90px;
+    width: 100%;
+    background-color: black;
+    align-items: center;
+    display: flex;
+    list-style-type: none;
+  }
+  
+  .navbar h1 {
+    color: white;
+    width: 100%;
+    font-size: 25px;
+  }
+  
+  .navigation {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    width: 100%;
+    list-style-type: none;
+  }
+  
+  .navigation a {
+    text-decoration: none;
+    color: lightgrey;
+    display: flex;
+    text-decoration: none;
+  }
+  
+  .navigation a:hover {
+    color: white;
+  }
+  
+  .fa-solid {
+    color: #009acd;
+  }
+  
+  .icon {
+    display: flex;
+    width: 10%;
+    justify-content: center;
+  }
+
+
+  fieldset {
+    border: 1;
+    border: solid 0.2vh #009acd;
+    border-radius: 1vh;
+
+}
+
+
+ .edit-data{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  
+  height: 100vh;
+ 
+}
+
+
+.modify-form {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  white-space: nowrap;
+  width: 100%; 
+  font-size: larger;
+  padding: 20px; 
+}
+
+
+
+.submit-btn{
+  font-family: Oswald;
+  font-weight: 300;
+  padding: 1%;
+  font-size: 3vh;
+  width: 100%;
+  height: 6vh;
+  color: white;
+  background-color: black;
+  border: solid 0.2vh #009acd;
+  border-radius: 1vh;
+}
+
+.submit-btn:hover {
+  background-color: #565656;
+  border: solid 0.2vh white;
+}
+
+label {
+  display: inline-block;
+  width: 100px; 
+  text-align: left;
+  margin-right: 2px; 
+}
+
+
+@media screen and (max-width: 767px) {
+  .navbar {
+    height: 20vh;
+    display: flex;
+    flex-direction: column;
+    overflow-y:none;
+  }
+
+  .fa-solid {
+    visibility: hidden;
+  }
+
+  .navbar h1 {
+    display: flex;
+    color: white;
+    justify-content: center;
+  }
+
+  .navigation {
+    flex-direction: row;
+    margin-top: 10px;
+  }
+
+  .navigation li {
+    margin-bottom: 10px;
+  }
+}

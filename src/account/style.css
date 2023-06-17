@@ -66,25 +66,21 @@ body {
 .album div {
   max-width: 500px;
   text-align: center;
-  align-items: center;
-  flex-direction: column;
-  height: 400px;
-  width: 400px;
+  height: 500px;
+  width: 500px;
 }
 
-.album img {
+img {
   border-radius: 30px;
   height: 300px;
   width: 300px;
 }
 
-.album img:hover {
+img:hover {
   border: solid white 4px;
 }
 
-.album h1 {
-  justify-content: center;
-}
+
 
 .album p {
   display: none;
@@ -213,6 +209,7 @@ body {
 @media screen and (max-width: 767px) {
   body {
     overflow-x: none;
+    overflow-y: none;
   }
 
   .navbar {
@@ -240,3 +237,5 @@ body {
     margin-bottom: 10px;
   }
 }
+
+

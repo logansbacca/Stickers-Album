@@ -12,10 +12,12 @@ const credits = document.getElementById("credit");
 const addCards = document.getElementById("add-cards");
 const album = document.getElementById("album");
 const currentUser = getCurrentUser();
+const modifyAccount = document.getElementById("modify-account-button");
 
 let userObject = JSON.parse(localStorage.getItem(currentUser));
 
 window.onload = function checkUser() {
+  
   if (currentUser == null) {
     redirect();
   } else {
@@ -36,6 +38,18 @@ signOut.addEventListener("click", () => {
 function redirect() {
   window.location.href = "../login/index.html";
 }
+
+
+function createUniqueID() {
+  return Math.floor(Math.random() * Math.floor(Math.random() * Date.now()))
+}
+
+
+
+modifyAccount.addEventListener("click", () => {
+window.location.href = "../modify/index.html";
+})
+
 
 creditButton.addEventListener("click", () => {
   userObject.credits += 1;
@@ -66,12 +80,13 @@ async function getNewDeck() {
   for (let i = 0; i < 5; i++) {
     const data = await checkCache(urlCharacters);
     const index = Math.floor(Math.random() * 100);
+    const id =  createUniqueID()
     const result = data.data.results[index];
     const image = `${result.thumbnail.path}.${result.thumbnail.extension}`;
     const series = data.data.results[index].series.items;
     const events = data.data.results[index].events.items;
     const comics = data.data.results[index].comics.items;
-    let card = new Card(result, album, image, series, events, comics);
+    let card = new Card(result, album, image, series, events, comics, id);
     const newSticker = card.getCard();
     if (
       newSticker.description == "" ||
@@ -92,6 +107,7 @@ async function displayAlbum() {
   if (userObject.stickers.length > 0) {
     for (let i = 0; i < userObject.stickers.length; i++) {
       const image = userObject.stickers[i].image;
+      const id =  createUniqueID()
       const series = userObject.stickers[i].series;
       const events = userObject.stickers[i].events;
       const comics = userObject.stickers[i].comics;
@@ -101,7 +117,8 @@ async function displayAlbum() {
         image,
         series,
         events,
-        comics
+        comics,
+        id
       );
       card.createCard();
     }
@@ -114,12 +131,9 @@ function updateUser() {
   localStorage.setItem(currentUser, JSON.stringify(userObject));
 }
 
-/* function clearSticker() {
-  userObject.stickers = [];
-  localStorage.setItem(currentUser, JSON.stringify(userObject));
-  updateUser();
-  displayAlbum();
-} */
+
+
+
 
 async function setFirstCard() {
   ("setting first");
@@ -127,9 +141,10 @@ async function setFirstCard() {
   const result = data.data.results[0];
   const image = `${result.thumbnail.path}.${result.thumbnail.extension}`;
   const series = data.data.results[0].series.items;
+  const id =  createUniqueID()
   const events = data.data.results[0].events.items;
   const comics = data.data.results[0].comics.items;
-  const card = new Card(result, album, image, series, events, comics);
+  const card = new Card(result, album, image, series, events, comics,id);
   card.createCard();
   const toStorage = card.getCard();
   userObject.stickers.push(toStorage);
@@ -140,7 +155,6 @@ let isOpen = false;
 
 album.addEventListener("click", (e) => {
   const clickedImage = e.target;
-  clickedImage;
   if (clickedImage.tagName == "IMG" || clickedImage.tagName == "H1") {
     const parentDiv = clickedImage.parentNode;
     const myPara = parentDiv.getElementsByTagName("p")[0];
@@ -185,6 +199,7 @@ album.addEventListener("click", (e) => {
       isOpen = false;
       revertDiv(
         myPara,
+        myImg,
         parentDiv,
         description,
         seriesList,
@@ -218,19 +233,18 @@ function enlargeDiv(
   eventsTitle.style.display = "block";
   comicsTitle.style.display = "block";
   myPara.style.display = "block";
-  myImg.style.opacity = "1";
-  myImg.addEventListener("mouseover", function() {
-    myImg.style.border = "none";
-  });
-  parentDiv.style.height = "500px";
   parentDiv.style.overflowY = "scroll";
-  parentDiv.style.width = "100%";
   parentDiv.style.border = "solid 0.2vh #009acd";
   parentDiv.style.borderRadius = "1vh";
+  myImg.addEventListener("mouseover", function(){
+    myImg.style.border = "none";
+  })
+ 
 }
 
 function revertDiv(
   myPara,
+  myImg,
   parentDiv,
   description,
   seriesList,
@@ -248,12 +262,21 @@ function revertDiv(
   eventsTitle.style.display = "none";
   comicsTitle.style.display = "none";
   myPara.style.display = "none";
-  parentDiv.style.height = "400px";
+  parentDiv.style.height = "500px";
   parentDiv.style.overflowY = "hidden";
-  parentDiv.style.width = "400px";
+  parentDiv.style.width = "500px";
   parentDiv.style.background = "black";
   parentDiv.style.border = "none";
+
   myImg.addEventListener("mouseover", function() {
     myImg.style.border = "solid white 4px";
   });
+  
+  myImg.addEventListener("mouseout", function() {
+    myImg.style.border = "none";
+  });
+
 }
+
+
+ 

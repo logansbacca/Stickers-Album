@@ -1,8 +1,13 @@
+
+import {exchangeCard} from '../modules/exchangeCard.js';
+
+
 export class Card {
-  constructor(data, album, image, series, events, comics) {
+  constructor(data, album, image, series, events, comics, uniqueID) {
     this.data = data;
     this.album = album;
     this.image = image;
+    this.uniqueID = uniqueID;
     this.series = series.sort((a, b) => a.name.length - b.name.length);
     this.events = events.sort((a, b) => a.name.length - b.name.length);
     this.comics = comics.sort((a, b) => a.name.length - b.name.length);
@@ -10,6 +15,21 @@ export class Card {
 
   createCard() {
     const $card = document.createElement("div");
+    const $exchange = document.createElement("i");
+    $exchange.classList.add("fa-solid", "fa-right-left", "fa-xl");
+    $exchange.style.color = "#43b5cb";
+    $exchange.style.margin = "20px";
+    $exchange.onmouseover = function () {
+      this.style.color = "grey";
+    };
+    $exchange.onmouseout= function () {
+      this.style.color = "#43b5cb";
+    };
+
+    $exchange.addEventListener( "click", (e) => {
+      exchangeCard(this.uniqueID);
+    });
+
     const $name = document.createElement("h1");
     const $descriptionDescription = document.createElement("h2");
     $descriptionDescription.setAttribute("id", "description");
@@ -29,6 +49,7 @@ export class Card {
     $comicsList.setAttribute("id", "comicsList");
     const id = "";
     $card.appendChild($name);
+    $card.appendChild($exchange);
     $card.appendChild($image);
     $card.appendChild($descriptionDescription);
     $card.appendChild($description);
@@ -38,6 +59,7 @@ export class Card {
     $card.appendChild($eventsList);
     $card.appendChild($comicsTitle);
     $card.appendChild($comicsList);
+
     $card.classList.add("card");
     $comicsList.style.display = "none";
     $eventsList.style.display = "none";
@@ -50,6 +72,7 @@ export class Card {
     this.album.insertBefore($card, this.album.firstChild);
     this._fillCard(
       $name,
+      $exchange,
       $image,
       $description,
       id,
@@ -62,6 +85,7 @@ export class Card {
 
   _fillCard(
     name,
+    exchange,
     image,
     description,
     id,
@@ -70,7 +94,11 @@ export class Card {
     $eventsList
   ) {
     name.innerText = this.getName();
+    exchange.setAttribute("src", "../assets/scambio.png");
+    exchange.style.height = "20px";
+    exchange.style.width = "20px";
     image.src = this.getImage();
+
     description.innerText = this.getDescription();
     id = this.getID();
     //LOOPING OVER SERIES/EVENT/ COMICS OBJ ARRAY AND CREATING FOR EACH LIST ELEMENT
@@ -116,11 +144,13 @@ export class Card {
       name: this.getName(),
       image: this.getImage(),
       description: this.getDescription(),
-      id: this.getID(),
+      marvelID: this.getID(),
+      uniqueID : this.uniqueID,
       series: this.series,
       events: this.events,
       comics: this.comics,
     };
     return card;
   }
+  
 }
