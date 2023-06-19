@@ -4,6 +4,11 @@ import { Card } from "../modules/card.js";
 import { checkCache } from "../modules/checkCache.js";
 import { urlCharacter } from "../modules/urlCharacter.js";
 import { urlCharacters } from "../modules/urlCharacters.js";
+import { createUniqueID } from '../modules/createUniqueID.js';
+import { removeCard } from "../modules/removeCard.js";
+import { exchangeCard} from "../modules/exchangeCard.js"
+
+
 
 const signOut = document.getElementById("sign-out");
 const albumName = document.getElementById("album-name");
@@ -13,6 +18,8 @@ const addCards = document.getElementById("add-cards");
 const album = document.getElementById("album");
 const currentUser = getCurrentUser();
 const modifyAccount = document.getElementById("modify-account-button");
+const exchangeButton = document.getElementById("exchange-button")
+
 
 let userObject = JSON.parse(localStorage.getItem(currentUser));
 
@@ -27,6 +34,8 @@ window.onload = function checkUser() {
   }
 };
 
+
+
 function updateCredits() {
   credits.innerText = `CREDITS : ${userObject.credits.toString()}`;
 }
@@ -37,11 +46,6 @@ signOut.addEventListener("click", () => {
 
 function redirect() {
   window.location.href = "../login/index.html";
-}
-
-
-function createUniqueID() {
-  return Math.floor(Math.random() * Math.floor(Math.random() * Date.now()))
 }
 
 
@@ -80,13 +84,13 @@ async function getNewDeck() {
   for (let i = 0; i < 5; i++) {
     const data = await checkCache(urlCharacters);
     const index = Math.floor(Math.random() * 100);
-    const id =  createUniqueID()
     const result = data.data.results[index];
     const image = `${result.thumbnail.path}.${result.thumbnail.extension}`;
     const series = data.data.results[index].series.items;
     const events = data.data.results[index].events.items;
     const comics = data.data.results[index].comics.items;
-    let card = new Card(result, album, image, series, events, comics, id);
+    const id = createUniqueID();
+    let card = new Card(result, album, image, series, events, comics,id);
     const newSticker = card.getCard();
     if (
       newSticker.description == "" ||
@@ -107,10 +111,10 @@ async function displayAlbum() {
   if (userObject.stickers.length > 0) {
     for (let i = 0; i < userObject.stickers.length; i++) {
       const image = userObject.stickers[i].image;
-      const id =  createUniqueID()
       const series = userObject.stickers[i].series;
       const events = userObject.stickers[i].events;
       const comics = userObject.stickers[i].comics;
+      const id = userObject.stickers[i].uniqueID;
       const card = new Card(
         userObject.stickers[i],
         album,
@@ -141,9 +145,9 @@ async function setFirstCard() {
   const result = data.data.results[0];
   const image = `${result.thumbnail.path}.${result.thumbnail.extension}`;
   const series = data.data.results[0].series.items;
-  const id =  createUniqueID()
   const events = data.data.results[0].events.items;
   const comics = data.data.results[0].comics.items;
+  const id = createUniqueID();
   const card = new Card(result, album, image, series, events, comics,id);
   card.createCard();
   const toStorage = card.getCard();
@@ -153,8 +157,19 @@ async function setFirstCard() {
 
 let isOpen = false;
 
+
+
 album.addEventListener("click", (e) => {
   const clickedImage = e.target;
+
+  if (clickedImage.tagName == 'I'){
+    const parentDiv = clickedImage.parentNode;
+    console.log(parentDiv)
+    console.log(parentDiv.dataset.id)
+    exchangeCard(parentDiv.dataset.id); 
+    removeCard(parentDiv.dataset.id); 
+  }
+
   if (clickedImage.tagName == "IMG" || clickedImage.tagName == "H1") {
     const parentDiv = clickedImage.parentNode;
     const myPara = parentDiv.getElementsByTagName("p")[0];
@@ -280,3 +295,6 @@ function revertDiv(
 
 
  
+exchangeButton.addEventListener("click", function() {
+  window.location.href = "../exchange/index.html";
+});

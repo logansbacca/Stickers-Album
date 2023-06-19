@@ -1,20 +1,19 @@
 
-import {exchangeCard} from '../modules/exchangeCard.js';
-
 
 export class Card {
-  constructor(data, album, image, series, events, comics, uniqueID) {
+  constructor(data, album, image, series, events, comics,uniqueID) {
     this.data = data;
     this.album = album;
     this.image = image;
-    this.uniqueID = uniqueID;
     this.series = series.sort((a, b) => a.name.length - b.name.length);
     this.events = events.sort((a, b) => a.name.length - b.name.length);
     this.comics = comics.sort((a, b) => a.name.length - b.name.length);
+    this.uniqueID = uniqueID;
   }
-
+ 
   createCard() {
     const $card = document.createElement("div");
+    $card.dataset.id = this.uniqueID;
     const $exchange = document.createElement("i");
     $exchange.classList.add("fa-solid", "fa-right-left", "fa-xl");
     $exchange.style.color = "#43b5cb";
@@ -26,9 +25,6 @@ export class Card {
       this.style.color = "#43b5cb";
     };
 
-    $exchange.addEventListener( "click", (e) => {
-      exchangeCard(this.uniqueID);
-    });
 
     const $name = document.createElement("h1");
     const $descriptionDescription = document.createElement("h2");
@@ -47,7 +43,6 @@ export class Card {
     $comicsTitle.setAttribute("id", "comicsTitle");
     const $comicsList = document.createElement("ul");
     $comicsList.setAttribute("id", "comicsList");
-    const id = "";
     $card.appendChild($name);
     $card.appendChild($exchange);
     $card.appendChild($image);
@@ -75,7 +70,6 @@ export class Card {
       $exchange,
       $image,
       $description,
-      id,
       $seriesList,
       $comicsList,
       $eventsList
@@ -88,19 +82,17 @@ export class Card {
     exchange,
     image,
     description,
-    id,
     $seriesList,
     $comicsList,
     $eventsList
   ) {
+    
     name.innerText = this.getName();
     exchange.setAttribute("src", "../assets/scambio.png");
     exchange.style.height = "20px";
     exchange.style.width = "20px";
     image.src = this.getImage();
-
     description.innerText = this.getDescription();
-    id = this.getID();
     //LOOPING OVER SERIES/EVENT/ COMICS OBJ ARRAY AND CREATING FOR EACH LIST ELEMENT
     for (let i = 0; i < this.series.length; i++) {
       const $series = document.createElement("li");
@@ -144,7 +136,7 @@ export class Card {
       name: this.getName(),
       image: this.getImage(),
       description: this.getDescription(),
-      marvelID: this.getID(),
+      identification: this.getID(),
       uniqueID : this.uniqueID,
       series: this.series,
       events: this.events,

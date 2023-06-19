@@ -5,11 +5,13 @@ const button = document.getElementById("bt");
 const warning = document.getElementById("warning");
 const selector = document.getElementById("sticker-selector");
 import { hashPassword } from "../modules/hashPassword.js";
+
 button.addEventListener("click", submit);
 
 async function submit() {
   let email = userEmail.value;
   let user = username.value;
+
   let pass = password.value;
   let favHero = selector.value;
 

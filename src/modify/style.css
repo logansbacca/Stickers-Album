@@ -99,6 +99,10 @@ html {
   border-radius: 1vh;
 }
 
+
+#username {
+  background-color:white;
+}
 .submit-btn:hover {
   background-color: #565656;
   border: solid 0.2vh white;

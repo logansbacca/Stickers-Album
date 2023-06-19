@@ -1,0 +1,92 @@
+
+
+
+  html {
+    box-sizing: border-box;
+    font-family: "Oswald", sans-serif;
+  }
+  body {
+    margin: 0;
+    padding: 0;
+    background-color: black;
+    color: white;
+  }
+  
+  .navbar {
+    height: 90px;
+    width: 100%;
+    background-color: black;
+    align-items: center;
+    display: flex;
+    list-style-type: none;
+  }
+  
+  .navbar h1 {
+    color: white;
+    width: 100%;
+    font-size: 25px;
+  }
+  
+  .navigation {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    width: 100%;
+    list-style-type: none;
+  }
+  
+  .navigation a {
+    text-decoration: none;
+    color: lightgrey;
+    display: flex;
+    text-decoration: none;
+  }
+  
+  .navigation a:hover {
+    color: white;
+  }
+  
+  .fa-solid {
+    color: #009acd;
+  }
+  
+  .icon {
+    display: flex;
+    width: 10%;
+    justify-content: center;
+  }
+  
+  /* end navbar */
+  
+  .cards {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    text-align: center;
+    align-items: flex-start;
+  }
+  
+
+    h1{
+    margin: 3vh;
+  }
+  .cards .card {
+    width: calc(20% - 60px);
+    margin: 30px;
+  }
+  
+  .card p {
+    margin: 0;
+  }
+  
+  img {
+    display: flex;
+    justify-self: center;
+    border-radius: 30px;
+    height: 200px;
+    width: 100%;
+    margin: 10px 0px 10px 0px;
+    object-fit: cover;
+    border: 2px solid #009acd;
+  }
+  
