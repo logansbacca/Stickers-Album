@@ -5,6 +5,7 @@ const button = document.getElementById("bt");
 button.addEventListener("click", submit);
 import { hashPassword } from "../modules/hashPassword.js";
 import { setCurrentUser } from "../modules/currentUser.js";
+import { getCurrentUser } from "../modules/currentUser.js";
 
 async function submit() {
   let user = username.value;
@@ -15,17 +16,26 @@ async function submit() {
   } else {
     try {
       const hashedPassword = await hashPassword(pass);
-      let newUser = JSON.parse(localStorage.getItem(user));
-      if (newUser != null && newUser.password === hashedPassword) {
-        setCurrentUser(user);
-        warning.style.color = "green";
-        warning.innerText = "login successful";
-        window.location.href = "../home/index.html";
-      } else {
-        warning.style.color = "red";
-        warning.innerText = "please input correct information";
+      for (let i = 0; i < localStorage.length; i++) {
+        const key = localStorage.key(i);
+        const storedUser = JSON.parse(localStorage.getItem(key));
+
+        if (
+          storedUser != null &&
+          storedUser.username === user &&
+          storedUser.password === hashedPassword
+        ) {
+          setCurrentUser(storedUser.userID);
+
+          warning.style.color = "green";
+          warning.innerText = "login successful";
+          window.location.href = "../home/index.html";
+          break;
+        }
       }
     } catch (error) {
+      warning.style.color = "red";
+      warning.innerText = "please input correct information";
       "error has occured", error;
     }
   }

@@ -141,6 +141,7 @@ export class Card {
       series: this.series,
       events: this.events,
       comics: this.comics,
+      satus: "default"
     };
     return card;
   }

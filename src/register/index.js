@@ -5,15 +5,16 @@ const button = document.getElementById("bt");
 const warning = document.getElementById("warning");
 const selector = document.getElementById("sticker-selector");
 import { hashPassword } from "../modules/hashPassword.js";
-
+import {createUniqueID} from "../modules/createUniqueID.js"
 button.addEventListener("click", submit);
 
 async function submit() {
   let email = userEmail.value;
   let user = username.value;
-
+  let userID = createUniqueID()
   let pass = password.value;
   let favHero = selector.value;
+
 
   if (user.includes(" ") || pass.includes(" ") || user === "" || pass === "") {
     warning.style.color = "red";
@@ -28,12 +29,13 @@ async function submit() {
         const userData = {
           username: user,
           password: hashedPassword,
+          userID : userID,
           stickers: new Array(),
           credits: 1,
           email: email,
-          favorite: favHero,
+          favorite: favHero
         };
-        localStorage.setItem(user, JSON.stringify(userData));
+        localStorage.setItem(userID, JSON.stringify(userData));
         window.location.href = "../login/index.html";
       } else {
         warning.style.color = "red";

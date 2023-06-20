@@ -19,8 +19,8 @@ username.value = getUser.username;
 async function submitNewValues() {
   
   const updatedUsername = username.value;
- 
-   if (localStorage.getItem(updatedUsername) == null){
+
+   if (localStorage.getItem(currentUser).username == null){
     getUser.username = updatedUsername;
     localStorage.removeItem(getUser.username);
     getUser.email = email.value;
@@ -35,26 +35,13 @@ async function submitNewValues() {
     }, 700);
     return
   } 
-  localStorage.setItem(username.value, JSON.stringify(getUser));
-  modifyUsernameInExchangedCards(updatedUsername);
+  localStorage.setItem(currentUser, JSON.stringify(getUser));
+
   logOut();
   window.location.href = "../login/index.html"; 
   
 }
 
-function modifyUsernameInExchangedCards(updatedUsername) {
-   try { 
-    const allCardsExchanged = JSON.parse(
-      localStorage.getItem("exchangedCards")
-    );
-    const currentUserCards = allCardsExchanged[currentUser]
-    allCardsExchanged[updatedUsername] = currentUserCards;
-    delete allCardsExchanged[currentUser];
-    localStorage.setItem("exchangedCards", JSON.stringify(allCardsExchanged));
 
-  } catch (error) {
-    console.error("no cards exchanged", error);
-  } 
-}
 
 submitButton.addEventListener("click", submitNewValues);

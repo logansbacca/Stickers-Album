@@ -1,12 +1,15 @@
 import { getCurrentUser } from "../modules/currentUser.js";
-
-const userName = getCurrentUser();
-let user = JSON.parse(localStorage.getItem(userName));
+import { removeCard } from "../modules/removeCard.js";
 
 export function exchangeCard(id) {
-    const index = user.stickers.findIndex(
+  const userName = getCurrentUser();
+  let user = JSON.parse(localStorage.getItem(userName));
+
+  const index = user.stickers.findIndex(
     (card) => JSON.stringify(card.uniqueID) === id
   );
+
+  console.log(user.stickers);
 
   const cardToExchange = user.stickers[index];
   let exchangedCards;
@@ -17,15 +20,20 @@ export function exchangeCard(id) {
     exchangedCards = {};
     console.error("error", error);
   }
-
-  if (exchangedCards[userName]) { 
-      exchangedCards[userName].exchangedCards.push(cardToExchange);
-    } else {
+ 
+  if (exchangedCards[userName]) {
+    exchangedCards[userName].exchangedCards.push(cardToExchange);
+  } else {
     exchangedCards[userName] = {
-      exchangedCards: [cardToExchange],
-    }; 
+      exchangedCards: [cardToExchange]
+    };
   }
 
   localStorage.setItem("exchangedCards", JSON.stringify(exchangedCards));
+
+  localStorage.setItem(userName, JSON.stringify(user));
+
+
+    removeCard(id);
 
 }

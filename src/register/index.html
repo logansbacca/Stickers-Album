@@ -39,12 +39,8 @@
           <input id="username" placeholder="Username" type="text" />
           <input id="password" placeholder="Password" type="password" />
           <label>Choose a hero</label>
-          <select
-            id="sticker-selector"
-            class="sticker-selector"
-            name="sticker-selector"
-          >
-            <option value="null" selected disabled>pick one</option>
+          <select id="sticker-selector" class="sticker-selector" name="sticker-selector" required>
+            <option value="" selected disabled hidden>pick one</option>
             <option value="hulk">hulk</option>
             <option value="deadpool">deadpool</option>
             <option value="wolverine">wolverine</option>

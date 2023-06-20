@@ -5,7 +5,7 @@ import { checkCache } from "../modules/checkCache.js";
 import { urlCharacter } from "../modules/urlCharacter.js";
 import { urlCharacters } from "../modules/urlCharacters.js";
 import { createUniqueID } from '../modules/createUniqueID.js';
-import { removeCard } from "../modules/removeCard.js";
+
 import { exchangeCard} from "../modules/exchangeCard.js"
 
 
@@ -23,11 +23,12 @@ const exchangeButton = document.getElementById("exchange-button")
 
 let userObject = JSON.parse(localStorage.getItem(currentUser));
 
+
 window.onload = function checkUser() {
-  
   if (currentUser == null) {
     redirect();
   } else {
+    console.log(userObject.username)
     albumName.innerText = `${userObject.username.toUpperCase()}'S ALBUM`;
     updateCredits();
     displayAlbum();
@@ -47,7 +48,6 @@ signOut.addEventListener("click", () => {
 function redirect() {
   window.location.href = "../login/index.html";
 }
-
 
 
 modifyAccount.addEventListener("click", () => {
@@ -166,8 +166,11 @@ album.addEventListener("click", (e) => {
     const parentDiv = clickedImage.parentNode;
     console.log(parentDiv)
     console.log(parentDiv.dataset.id)
-    exchangeCard(parentDiv.dataset.id); 
-    removeCard(parentDiv.dataset.id); 
+   
+      exchangeCard(parentDiv.dataset.id);
+    
+
+   
   }
 
   if (clickedImage.tagName == "IMG" || clickedImage.tagName == "H1") {
