@@ -1,6 +1,7 @@
 import { getCurrentUser } from "../modules/currentUser.js";
 import { createUniqueID } from "../modules/createUniqueID.js";
 
+
 let currentUser = getCurrentUser();
 let user = JSON.parse(localStorage.getItem(currentUser));
 let currentUserName = user.username;
@@ -50,11 +51,10 @@ Object.keys(data).forEach((key) => {
       cardContainer.appendChild(nameElement);
 
       cardContainer.addEventListener("click", function () {
-       
         if (cardOwner.username === currentUserName) {
           if (selectedUserCard === null && card.status != "exchanging") {
             newTrade.userCard = card.identification;
-            newTrade.proposalMaker = cardOwner.username;
+            newTrade.proposalMaker = key;
             card.status = "exchanging";
           } else {
             selectedUserCard = null;
@@ -71,7 +71,7 @@ Object.keys(data).forEach((key) => {
           newTrade.proposalMaker != null
         ) {
           newTrade.marketCard = card.identification;
-          newTrade.proposalReceiver = cardOwner.username;
+          newTrade.proposalReceiver = key;
           card.status = "exchanging";
           trades[statusID] = { trading: newTrade };
           localStorage.setItem("trades", JSON.stringify(trades));
@@ -91,25 +91,28 @@ Object.keys(data).forEach((key) => {
           refuseButton.textContent = "Refuse";
           cardContainer.appendChild(refuseButton);
 
-      /*     acceptButton.addEventListener("click", function () {
-            let currentUserStickers = JSON.parse(
-              localStorage.getItem(currentUserName)
-            );
-            currentUserStickers.push(card);
-            localStorage.setItem(
-              currentUserName,
-              JSON.stringify(currentUserStickers)
-            );
-            delete data[key].exchangedCards[i];
-            location.reload();
-          }); */
-
-          // must add the other person to also change the card status
           refuseButton.addEventListener("click", function () {
+            let currentProposalReceiver = null;
+            let currentmarketCard = null;
+
+            Object.keys(trades).forEach((key) => {
+              if (trades[key].trading.userCard === card.identification) {
+                currentProposalReceiver = trades[key].trading.proposalReceiver;
+                currentmarketCard = trades[key].trading.marketCard;
+              }
+            });
+
+            const test = data[currentProposalReceiver].exchangedCards.findIndex(
+              (obj) => obj.identification === currentmarketCard
+            );
+              data[currentProposalReceiver].exchangedCards[test].status ="default"; 
+
+
+            card.status = "default"; 
+            localStorage.setItem("exchangedCards", JSON.stringify(data)); 
+
             delete trades[statusID];
             localStorage.setItem("trades", JSON.stringify(trades));
-            card.status = "default";
-            localStorage.setItem("exchangedCards", JSON.stringify(data));
             location.reload();
           });
         }
