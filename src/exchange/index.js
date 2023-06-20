@@ -32,9 +32,14 @@ Object.keys(data).forEach((key) => {
   let cards = user.exchangedCards;
   for (let i = 0; i < cards.length; i++) {
     let card = cards[i];
-    if (card && card.name && card.image) {
+    if (card && card.name && card.image ) {
       let cardOwner = JSON.parse(localStorage.getItem(key));
       let cardContainer = document.createElement("div");
+      if (card.status == "exchanging") {
+        cardContainer.style.opacity = "50%";
+      }
+
+
       cardContainer.classList.add("card");
 
       let keyElement = document.createElement("p");
@@ -51,10 +56,9 @@ Object.keys(data).forEach((key) => {
 
    
       cardContainer.addEventListener("click", function () {
-      
+      console.log(card.status)
         if (cardOwner.username === currentUserName) {
           if (selectedUserCard === null && card.status != "exchanging") {
-            alert("hi")
             newTrade.userCard = card.identification;
             newTrade.proposalMaker = cardOwner.username;
             card.status = "exchanging";
@@ -76,8 +80,8 @@ Object.keys(data).forEach((key) => {
           trades[statusID] = {trading : newTrade};
           localStorage.setItem("trades", JSON.stringify(trades));
           localStorage.setItem("exchangedCards", JSON.stringify(data));
-          console.log(localStorage.getItem("trades"));
           selectedUserCard = null;
+          location.reload();
         }
       });
 
