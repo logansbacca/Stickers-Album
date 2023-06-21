@@ -30,7 +30,7 @@ Object.keys(data).forEach((key) => {
   let cards = user.exchangedCards;
   for (let i = 0; i < cards.length; i++) {
     let card = cards[i];
-   
+
     if (card && card.name && card.image) {
       let cardOwner = JSON.parse(localStorage.getItem(key));
       let cardContainer = document.createElement("div");
@@ -120,13 +120,14 @@ Object.keys(data).forEach((key) => {
           refuseButton.textContent = "Refuse";
           cardContainer.appendChild(refuseButton);
 
-          acceptButton.addEventListener("click",function() {
+          acceptButton.addEventListener("click", function (e) {
+            e.stopPropagation();
             let newproposalMaker = null;
             let newproposedCard = null;
             let newmarketCard = null;
-            let newproposalReceiver = null
+            let newproposalReceiver = null;
             let tradeKey = null;
-            
+
             Object.keys(trades).forEach((key) => {
               if (trades[key].trading.marketCard == card.uniqueID) {
                 newproposalMaker = trades[key].trading.proposalMaker;
@@ -137,16 +138,32 @@ Object.keys(data).forEach((key) => {
               }
             });
 
-            //proposal maker should get the new market card
-            let pm = JSON.parse(localStorage.getItem(newproposalMaker))
-            //proposal reciever should get the new proposed card
-            let pr = JSON.parse(localStorage.getItem(newproposalReceiver))
-            console.log(pm)
-            console.log(pr)
+            let pm = JSON.parse(localStorage.getItem(newproposalMaker));
+            let pr = JSON.parse(localStorage.getItem(newproposalReceiver));
+            let makerID = pm.userID;
+            let recieverID = pr.userID;
+            let offeredCardIndex = data[makerID].exchangedCards.findIndex(
+              (card) => card.uniqueID === newproposedCard
+            );
+            let recievedCardIndex = data[recieverID].exchangedCards.findIndex(
+              (card) => card.uniqueID === newmarketCard
+            );
+            let offeredCard = data[makerID].exchangedCards[offeredCardIndex];
+            let recievedCard =
+              data[recieverID].exchangedCards[recievedCardIndex];
+            data[makerID].exchangedCards.splice(recievedCardIndex, 1);
+            data[recieverID].exchangedCards.splice(offeredCardIndex, 1);
+            localStorage.setItem("exchangedCards", JSON.stringify(data));
+            let pmProfile = JSON.parse(localStorage.getItem(makerID));
+            let prProfile = JSON.parse(localStorage.getItem(recieverID));
+            pmProfile.stickers.push(recievedCard);
+            prProfile.stickers.push(offeredCard);
+            localStorage.setItem(makerID, JSON.stringify(pmProfile));
+            localStorage.setItem(recieverID, JSON.stringify(prProfile));
+          });
 
-          })
-
-          refuseButton.addEventListener("click", function () {
+          refuseButton.addEventListener("click", function (e) {
+            e.stopPropagation();
             let currentProposalMaker = null;
             let proposedCard = null;
             let targetKey = null;
@@ -159,20 +176,19 @@ Object.keys(data).forEach((key) => {
               }
             });
 
-            const test = data[currentProposalMaker].exchangedCards.findIndex(
+            const index = data[currentProposalMaker].exchangedCards.findIndex(
               (obj) => obj.uniqueID === proposedCard
             );
 
-            data[currentProposalMaker].exchangedCards[test].status = "default";
+            data[currentProposalMaker].exchangedCards[index].status = "default";
 
             card.status = "default";
             localStorage.setItem("exchangedCards", JSON.stringify(data));
-           
-          
+
             delete trades[targetKey];
-           
-            localStorage.setItem("trades", JSON.stringify(trades)); 
-            location.reload(); 
+
+            localStorage.setItem("trades", JSON.stringify(trades));
+            location.reload();
           });
         }
       }
