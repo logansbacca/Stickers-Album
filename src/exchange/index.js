@@ -1,7 +1,6 @@
 import { getCurrentUser } from "../modules/currentUser.js";
 import { createUniqueID } from "../modules/createUniqueID.js";
 
-
 let currentUser = getCurrentUser();
 let user = JSON.parse(localStorage.getItem(currentUser));
 let currentUserName = user.username;
@@ -50,6 +49,12 @@ Object.keys(data).forEach((key) => {
       nameElement.textContent = "Name: " + card.name;
       cardContainer.appendChild(nameElement);
 
+      if (cardOwner.userID == currentUser) {
+        userCardsContainer.appendChild(cardContainer);
+      } else {
+        marketCardsContainer.appendChild(cardContainer);
+      }
+
       cardContainer.addEventListener("click", function () {
         if (cardOwner.username === currentUserName) {
           if (selectedUserCard === null && card.status != "exchanging") {
@@ -81,7 +86,18 @@ Object.keys(data).forEach((key) => {
         }
       });
 
-      if (cardOwner.username === currentUserName) {
+      let currentCardOwner = "";
+      for (const tradeKey in trades) {
+        if (trades.hasOwnProperty(tradeKey)) {
+          const trade = trades[tradeKey];
+          const tradingArray = trade.trading;
+          if (tradingArray.marketCard == card.identification) {
+            currentCardOwner = tradingArray.proposalReceiver;
+          }
+        }
+      }
+
+      if (currentCardOwner == currentUser) {
         if (card.status === "exchanging") {
           let acceptButton = document.createElement("button");
           acceptButton.textContent = "Accept";
@@ -105,20 +121,17 @@ Object.keys(data).forEach((key) => {
             const test = data[currentProposalReceiver].exchangedCards.findIndex(
               (obj) => obj.identification === currentmarketCard
             );
-              data[currentProposalReceiver].exchangedCards[test].status ="default"; 
+            data[currentProposalReceiver].exchangedCards[test].status =
+              "default";
 
-
-            card.status = "default"; 
-            localStorage.setItem("exchangedCards", JSON.stringify(data)); 
+            card.status = "default";
+            localStorage.setItem("exchangedCards", JSON.stringify(data));
 
             delete trades[statusID];
             localStorage.setItem("trades", JSON.stringify(trades));
             location.reload();
           });
         }
-        userCardsContainer.appendChild(cardContainer);
-      } else {
-        marketCardsContainer.appendChild(cardContainer);
       }
     }
   }
