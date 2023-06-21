@@ -30,6 +30,7 @@ Object.keys(data).forEach((key) => {
   let cards = user.exchangedCards;
   for (let i = 0; i < cards.length; i++) {
     let card = cards[i];
+   
     if (card && card.name && card.image) {
       let cardOwner = JSON.parse(localStorage.getItem(key));
       let cardContainer = document.createElement("div");
@@ -60,7 +61,7 @@ Object.keys(data).forEach((key) => {
       cardContainer.addEventListener("click", function () {
         if (cardOwner.username === currentUserName) {
           if (selectedUserCard === null && card.status != "exchanging") {
-            newTrade.userCard = card.identification;
+            newTrade.userCard = card.uniqueID;
             newTrade.proposalMaker = key;
             newTrade.userCardName = card.name;
             card.status = "exchanging";
@@ -79,7 +80,7 @@ Object.keys(data).forEach((key) => {
           newTrade.userCard != null &&
           newTrade.proposalMaker != null
         ) {
-          newTrade.marketCard = card.identification;
+          newTrade.marketCard = card.uniqueID;
           newTrade.marketCardName = card.name;
           newTrade.proposalReceiver = key;
           card.status = "exchanging";
@@ -97,7 +98,7 @@ Object.keys(data).forEach((key) => {
         if (trades.hasOwnProperty(tradeKey)) {
           const trade = trades[tradeKey];
           const tradingArray = trade.trading;
-          if (tradingArray.marketCard == card.identification) {
+          if (tradingArray.marketCard == card.uniqueID) {
             currentCardOwner = tradingArray.proposalReceiver;
             proposedCard = tradingArray.userCardName;
           }
@@ -125,7 +126,7 @@ Object.keys(data).forEach((key) => {
             let targetKey = null;
 
             Object.keys(trades).forEach((key) => {
-              if (trades[key].trading.marketCard == card.identification) {
+              if (trades[key].trading.marketCard == card.uniqueID) {
                 currentProposalMaker = trades[key].trading.proposalMaker;
                 proposedCard = trades[key].trading.userCard;
                 targetKey = key;
@@ -133,7 +134,7 @@ Object.keys(data).forEach((key) => {
             });
 
             const test = data[currentProposalMaker].exchangedCards.findIndex(
-              (obj) => obj.identification === proposedCard
+              (obj) => obj.uniqueID === proposedCard
             );
 
             data[currentProposalMaker].exchangedCards[test].status = "default";
