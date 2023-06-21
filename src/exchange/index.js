@@ -120,6 +120,32 @@ Object.keys(data).forEach((key) => {
           refuseButton.textContent = "Refuse";
           cardContainer.appendChild(refuseButton);
 
+          acceptButton.addEventListener("click",function() {
+            let newproposalMaker = null;
+            let newproposedCard = null;
+            let newmarketCard = null;
+            let newproposalReceiver = null
+            let tradeKey = null;
+            
+            Object.keys(trades).forEach((key) => {
+              if (trades[key].trading.marketCard == card.uniqueID) {
+                newproposalMaker = trades[key].trading.proposalMaker;
+                newproposedCard = trades[key].trading.userCard;
+                newmarketCard = trades[key].trading.marketCard;
+                newproposalReceiver = trades[key].trading.proposalReceiver;
+                tradeKey = key;
+              }
+            });
+
+            //proposal maker should get the new market card
+            let pm = JSON.parse(localStorage.getItem(newproposalMaker))
+            //proposal reciever should get the new proposed card
+            let pr = JSON.parse(localStorage.getItem(newproposalReceiver))
+            console.log(pm)
+            console.log(pr)
+
+          })
+
           refuseButton.addEventListener("click", function () {
             let currentProposalMaker = null;
             let proposedCard = null;
