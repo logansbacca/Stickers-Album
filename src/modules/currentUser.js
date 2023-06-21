@@ -1,4 +1,3 @@
-
 // easily check current user value
 export function setCurrentUser(user) {
   localStorage.setItem("user", JSON.stringify(user));

@@ -121,7 +121,7 @@ Object.keys(data).forEach((key) => {
           cardContainer.appendChild(refuseButton);
 
           acceptButton.addEventListener("click", function (e) {
-            let newtrades = trades
+            let newtrades = trades;
             e.stopPropagation();
             let newproposalMaker = null;
             let newproposedCard = null;
@@ -150,9 +150,10 @@ Object.keys(data).forEach((key) => {
               (card) => card.uniqueID === newmarketCard
             );
             let offeredCard = data[makerID].exchangedCards[offeredCardIndex];
-            let recievedCard = data[recieverID].exchangedCards[recievedCardIndex];
+            let recievedCard =
+              data[recieverID].exchangedCards[recievedCardIndex];
             offeredCard.status = "default";
-            recievedCard.status = "default"
+            recievedCard.status = "default";
             data[makerID].exchangedCards.splice(recievedCardIndex, 1);
             data[recieverID].exchangedCards.splice(offeredCardIndex, 1);
             localStorage.setItem("exchangedCards", JSON.stringify(data));
@@ -162,12 +163,11 @@ Object.keys(data).forEach((key) => {
             prProfile.stickers.push(offeredCard);
             localStorage.setItem(makerID, JSON.stringify(pmProfile));
             localStorage.setItem(recieverID, JSON.stringify(prProfile));
-            console.log(newtrades)
-            delete newtrades[tradeKey]
-            console.log(newtrades)
-             localStorage.setItem("trades", JSON.stringify(newtrades)); 
+            console.log(newtrades);
+            delete newtrades[tradeKey];
+            console.log(newtrades);
+            localStorage.setItem("trades", JSON.stringify(newtrades));
             /* location.reload();  */
-
           });
 
           refuseButton.addEventListener("click", function (e) {

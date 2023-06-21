@@ -4,11 +4,9 @@ import { Card } from "../modules/card.js";
 import { checkCache } from "../modules/checkCache.js";
 import { urlCharacter } from "../modules/urlCharacter.js";
 import { urlCharacters } from "../modules/urlCharacters.js";
-import { createUniqueID } from '../modules/createUniqueID.js';
+import { createUniqueID } from "../modules/createUniqueID.js";
 
-import { exchangeCard} from "../modules/exchangeCard.js"
-
-
+import { exchangeCard } from "../modules/exchangeCard.js";
 
 const signOut = document.getElementById("sign-out");
 const albumName = document.getElementById("album-name");
@@ -18,24 +16,20 @@ const addCards = document.getElementById("add-cards");
 const album = document.getElementById("album");
 const currentUser = getCurrentUser();
 const modifyAccount = document.getElementById("modify-account-button");
-const exchangeButton = document.getElementById("exchange-button")
-
+const exchangeButton = document.getElementById("exchange-button");
 
 let userObject = JSON.parse(localStorage.getItem(currentUser));
-
 
 window.onload = function checkUser() {
   if (currentUser == null) {
     redirect();
   } else {
-    console.log(userObject.username)
+    console.log(userObject.username);
     albumName.innerText = `${userObject.username.toUpperCase()}'S ALBUM`;
     updateCredits();
     displayAlbum();
   }
 };
-
-
 
 function updateCredits() {
   credits.innerText = `CREDITS : ${userObject.credits.toString()}`;
@@ -49,11 +43,9 @@ function redirect() {
   window.location.href = "../login/index.html";
 }
 
-
 modifyAccount.addEventListener("click", () => {
-window.location.href = "../modify/index.html";
-})
-
+  window.location.href = "../modify/index.html";
+});
 
 creditButton.addEventListener("click", () => {
   userObject.credits += 1;
@@ -90,7 +82,7 @@ async function getNewDeck() {
     const events = data.data.results[index].events.items;
     const comics = data.data.results[index].comics.items;
     const id = createUniqueID();
-    let card = new Card(result, album, image, series, events, comics,id);
+    let card = new Card(result, album, image, series, events, comics, id);
     const newSticker = card.getCard();
     if (
       newSticker.description == "" ||
@@ -135,10 +127,6 @@ function updateUser() {
   localStorage.setItem(currentUser, JSON.stringify(userObject));
 }
 
-
-
-
-
 async function setFirstCard() {
   ("setting first");
   const data = await checkCache(urlCharacter);
@@ -148,7 +136,7 @@ async function setFirstCard() {
   const events = data.data.results[0].events.items;
   const comics = data.data.results[0].comics.items;
   const id = createUniqueID();
-  const card = new Card(result, album, image, series, events, comics,id);
+  const card = new Card(result, album, image, series, events, comics, id);
   card.createCard();
   const toStorage = card.getCard();
   userObject.stickers.push(toStorage);
@@ -157,20 +145,15 @@ async function setFirstCard() {
 
 let isOpen = false;
 
-
-
 album.addEventListener("click", (e) => {
   const clickedImage = e.target;
 
-  if (clickedImage.tagName == 'I'){
+  if (clickedImage.tagName == "I") {
     const parentDiv = clickedImage.parentNode;
-    console.log(parentDiv)
-    console.log(parentDiv.dataset.id)
-   
-      exchangeCard(parentDiv.dataset.id);
-    
+    console.log(parentDiv);
+    console.log(parentDiv.dataset.id);
 
-   
+    exchangeCard(parentDiv.dataset.id);
   }
 
   if (clickedImage.tagName == "IMG" || clickedImage.tagName == "H1") {
@@ -254,10 +237,9 @@ function enlargeDiv(
   parentDiv.style.overflowY = "scroll";
   parentDiv.style.border = "solid 0.2vh #009acd";
   parentDiv.style.borderRadius = "1vh";
-  myImg.addEventListener("mouseover", function(){
+  myImg.addEventListener("mouseover", function () {
     myImg.style.border = "none";
-  })
- 
+  });
 }
 
 function revertDiv(
@@ -286,18 +268,15 @@ function revertDiv(
   parentDiv.style.background = "black";
   parentDiv.style.border = "none";
 
-  myImg.addEventListener("mouseover", function() {
+  myImg.addEventListener("mouseover", function () {
     myImg.style.border = "solid white 4px";
   });
-  
-  myImg.addEventListener("mouseout", function() {
+
+  myImg.addEventListener("mouseout", function () {
     myImg.style.border = "none";
   });
-
 }
 
-
- 
-exchangeButton.addEventListener("click", function() {
+exchangeButton.addEventListener("click", function () {
   window.location.href = "../exchange/index.html";
 });

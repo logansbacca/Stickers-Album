@@ -1,7 +1,5 @@
-
-
 export class Card {
-  constructor(data, album, image, series, events, comics,uniqueID) {
+  constructor(data, album, image, series, events, comics, uniqueID) {
     this.data = data;
     this.album = album;
     this.image = image;
@@ -10,7 +8,7 @@ export class Card {
     this.comics = comics.sort((a, b) => a.name.length - b.name.length);
     this.uniqueID = uniqueID;
   }
- 
+
   createCard() {
     const $card = document.createElement("div");
     $card.dataset.id = this.uniqueID;
@@ -21,10 +19,9 @@ export class Card {
     $exchange.onmouseover = function () {
       this.style.color = "grey";
     };
-    $exchange.onmouseout= function () {
+    $exchange.onmouseout = function () {
       this.style.color = "#43b5cb";
     };
-
 
     const $name = document.createElement("h1");
     const $descriptionDescription = document.createElement("h2");
@@ -86,7 +83,6 @@ export class Card {
     $comicsList,
     $eventsList
   ) {
-    
     name.innerText = this.getName();
     exchange.setAttribute("src", "../assets/scambio.png");
     exchange.style.height = "20px";
@@ -137,13 +133,12 @@ export class Card {
       image: this.getImage(),
       description: this.getDescription(),
       identification: this.getID(),
-      uniqueID : this.uniqueID,
+      uniqueID: this.uniqueID,
       series: this.series,
       events: this.events,
       comics: this.comics,
-      status: "default"
+      status: "default",
     };
     return card;
   }
-  
 }

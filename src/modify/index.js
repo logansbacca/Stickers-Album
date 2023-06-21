@@ -17,31 +17,27 @@ password.value = getUser.password;
 username.value = getUser.username;
 
 async function submitNewValues() {
-  
   const updatedUsername = username.value;
 
-   if (localStorage.getItem(currentUser).username == null){
+  if (localStorage.getItem(currentUser).username == null) {
     getUser.username = updatedUsername;
     localStorage.removeItem(getUser.username);
     getUser.email = email.value;
-  if (getUser.password != password.value) {
-    getUser.password = await hashPassword(password.value);
-  }
-  }else {
+    if (getUser.password != password.value) {
+      getUser.password = await hashPassword(password.value);
+    }
+  } else {
     username.style.background = "red";
-    username.value ="invalid"
-    setTimeout(function() {
+    username.value = "invalid";
+    setTimeout(function () {
       location.reload();
     }, 700);
-    return
-  } 
+    return;
+  }
   localStorage.setItem(currentUser, JSON.stringify(getUser));
 
   logOut();
-  window.location.href = "../login/index.html"; 
-  
+  window.location.href = "../login/index.html";
 }
-
-
 
 submitButton.addEventListener("click", submitNewValues);

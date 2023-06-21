@@ -57,7 +57,6 @@ body {
 
 /* end navbar */
 
-
 .album {
   display: flex;
   flex-wrap: wrap;
@@ -80,8 +79,6 @@ img {
 img:hover {
   border: solid white 4px;
 }
-
-
 
 .album p {
   display: none;
@@ -238,5 +235,3 @@ img:hover {
     margin-bottom: 10px;
   }
 }
-
-

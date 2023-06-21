@@ -20,12 +20,12 @@ export function exchangeCard(id) {
     exchangedCards = {};
     console.error("error", error);
   }
- 
+
   if (exchangedCards[userName]) {
     exchangedCards[userName].exchangedCards.push(cardToExchange);
   } else {
     exchangedCards[userName] = {
-      exchangedCards: [cardToExchange]
+      exchangedCards: [cardToExchange],
     };
   }
 
@@ -33,7 +33,5 @@ export function exchangeCard(id) {
 
   localStorage.setItem(userName, JSON.stringify(user));
 
-
-    removeCard(id);
-
+  removeCard(id);
 }
