@@ -58,16 +58,13 @@ Object.keys(data).forEach((key) => {
         marketCardsContainer.appendChild(cardContainer);
       }
 
-
       cardContainer.addEventListener("click", function () {
         if (cardOwner.username === currentUserName) {
           if (selectedUserCard === null && card.status != "exchanging") {
             newTrade.userCard = card.uniqueID;
             newTrade.proposalMaker = key;
             newTrade.userCardName = card.name;
-      
             card.status = "exchanging";
-            selectedUserCard = card.uniqueID; // Store the selected card's uniqueID
           } else {
             selectedUserCard = null;
             newTrade = {
@@ -86,52 +83,14 @@ Object.keys(data).forEach((key) => {
           newTrade.marketCard = card.uniqueID;
           newTrade.marketCardName = card.name;
           newTrade.proposalReceiver = key;
+          card.status = "exchanging";
           trades[statusID] = { trading: newTrade };
           localStorage.setItem("trades", JSON.stringify(trades));
-          card.status = "exchanging";
-          console.log(data);
           localStorage.setItem("exchangedCards", JSON.stringify(data));
           selectedUserCard = null;
           location.reload();
         }
       });
-      
-
-  /*     cardContainer.addEventListener("click", function () {
-        if (cardOwner.username === currentUserName) {
-          if (selectedUserCard === null && card.status != "exchanging") {
-            newTrade.userCard = card.uniqueID;
-            newTrade.proposalMaker = key;
-            newTrade.userCardName = card.name;
-            
-            card.status = "exchanging"
-          } else {
-            selectedUserCard = null;
-            newTrade = {
-              proposalMaker: null,
-              userCard: null,
-              marketCard: null,
-              proposalReceiver: null,
-              marketCardName: null,
-            };
-          }
-        } else if (
-          card.status != "exchanging" &&
-          newTrade.userCard != null &&
-          newTrade.proposalMaker != null
-        ) {
-          newTrade.marketCard = card.uniqueID;
-          newTrade.marketCardName = card.name;
-          newTrade.proposalReceiver = key;
-          trades[statusID] = { trading: newTrade };
-          localStorage.setItem("trades", JSON.stringify(trades));
-          card.status = "exchanging";
-          console.log(data)
-          localStorage.setItem("exchangedCards", JSON.stringify(data));
-          selectedUserCard = null;
-          location.reload();
-        }
-      }); */
 
       let currentCardOwner = "";
       let proposedCard = "";
@@ -161,66 +120,7 @@ Object.keys(data).forEach((key) => {
           refuseButton.textContent = "Refuse";
           cardContainer.appendChild(refuseButton);
 
-
-
           acceptButton.addEventListener("click", function (e) {
-            e.stopPropagation();
-            let newproposalMaker = null;
-            let newproposedCard = null;
-            let newmarketCard = null;
-            let newproposalReceiver = null;
-            let tradeKey = null;
-          
-            Object.keys(trades).forEach((key) => {
-              if (trades[key].trading.marketCard == card.uniqueID) {
-                newproposalMaker = trades[key].trading.proposalMaker;
-                newproposedCard = trades[key].trading.userCard;
-                newmarketCard = trades[key].trading.marketCard;
-                newproposalReceiver = trades[key].trading.proposalReceiver;
-                tradeKey = key;
-              }
-            });
-          
-            let pm = JSON.parse(localStorage.getItem(newproposalMaker));
-            let pr = JSON.parse(localStorage.getItem(newproposalReceiver));
-            let makerID = pm.userID;
-            let recieverID = pr.userID;
-            let offeredCardIndex = data[makerID].exchangedCards.findIndex(
-              (card) => card.uniqueID === newproposedCard
-            );
-            let recievedCardIndex = data[recieverID].exchangedCards.findIndex(
-              (card) => card.uniqueID === newmarketCard
-            );
-            let offeredCard = data[makerID].exchangedCards[offeredCardIndex];
-            let recievedCard = data[recieverID].exchangedCards[recievedCardIndex];
-            offeredCard.status = "default";
-            recievedCard.status = "default";
-            data[makerID].exchangedCards.splice(recievedCardIndex, 1);
-            data[recieverID].exchangedCards.splice(offeredCardIndex, 1);
-            localStorage.setItem("exchangedCards", JSON.stringify(data));
-            let pmProfile = JSON.parse(localStorage.getItem(makerID));
-            let prProfile = JSON.parse(localStorage.getItem(recieverID));
-            pmProfile.stickers.push(recievedCard);
-            prProfile.stickers.push(offeredCard);
-            localStorage.setItem(makerID, JSON.stringify(pmProfile));
-            localStorage.setItem(recieverID, JSON.stringify(prProfile));
-          
-            delete trades[tradeKey];
-            localStorage.setItem("trades", JSON.stringify(trades));
-            location.reload();
-          });
-
-
-
-
-
-
-
-
-
-
-
-          /* acceptButton.addEventListener("click", function (e) {
             let newtrades = trades;
             e.stopPropagation();
             let newproposalMaker = null;
@@ -267,8 +167,8 @@ Object.keys(data).forEach((key) => {
             delete newtrades[tradeKey];
             console.log(newtrades);
             localStorage.setItem("trades", JSON.stringify(newtrades));
-            location.reload();  
-          }); */
+             location.reload();  
+          });
 
           refuseButton.addEventListener("click", function (e) {
             e.stopPropagation();
