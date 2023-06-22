@@ -5,7 +5,7 @@ const button = document.getElementById("bt");
 button.addEventListener("click", submit);
 import { hashPassword } from "../modules/hashPassword.js";
 import { setCurrentUser } from "../modules/currentUser.js";
-import { getCurrentUser } from "../modules/currentUser.js";
+
 
 async function submit() {
   let user = username.value;
