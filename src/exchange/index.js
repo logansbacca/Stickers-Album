@@ -53,6 +53,11 @@ Object.keys(data).forEach((key) => {
       cardContainer.appendChild(nameElement);
 
       if (cardOwner.userID == currentUser) {
+        console.log("start")
+        console.log(cardOwner.userId)
+        console.log(currentUser)
+        console.log(card)
+        console.log("end")
         userCardsContainer.appendChild(cardContainer);
       } else {
         marketCardsContainer.appendChild(cardContainer);
@@ -128,7 +133,7 @@ Object.keys(data).forEach((key) => {
             let newmarketCard = null;
             let newproposalReceiver = null;
             let tradeKey = null;
-
+          
             Object.keys(trades).forEach((key) => {
               if (trades[key].trading.marketCard == card.uniqueID) {
                 newproposalMaker = trades[key].trading.proposalMaker;
@@ -138,7 +143,7 @@ Object.keys(data).forEach((key) => {
                 tradeKey = key;
               }
             });
-
+          
             let pm = JSON.parse(localStorage.getItem(newproposalMaker));
             let pr = JSON.parse(localStorage.getItem(newproposalReceiver));
             let makerID = pm.userID;
@@ -147,15 +152,15 @@ Object.keys(data).forEach((key) => {
               (card) => card.uniqueID === newproposedCard
             );
             let recievedCardIndex = data[recieverID].exchangedCards.findIndex(
-              (card) => card.uniqueID === newmarketCard
+              (mycard) => mycard.uniqueID === newmarketCard
             );
             let offeredCard = data[makerID].exchangedCards[offeredCardIndex];
-            let recievedCard =
-              data[recieverID].exchangedCards[recievedCardIndex];
+            let recievedCard = data[recieverID].exchangedCards[recievedCardIndex];
             offeredCard.status = "default";
             recievedCard.status = "default";
-            data[makerID].exchangedCards.splice(recievedCardIndex, 1);
-            data[recieverID].exchangedCards.splice(offeredCardIndex, 1);
+            data[makerID].exchangedCards.splice(offeredCardIndex, 1);
+            data[recieverID].exchangedCards.splice(recievedCardIndex, 1);
+          
             localStorage.setItem("exchangedCards", JSON.stringify(data));
             let pmProfile = JSON.parse(localStorage.getItem(makerID));
             let prProfile = JSON.parse(localStorage.getItem(recieverID));
@@ -167,7 +172,7 @@ Object.keys(data).forEach((key) => {
             delete newtrades[tradeKey];
             console.log(newtrades);
             localStorage.setItem("trades", JSON.stringify(newtrades));
-             location.reload();  
+            location.reload();
           });
 
           refuseButton.addEventListener("click", function (e) {
