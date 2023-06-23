@@ -37,9 +37,9 @@ Object.keys(data).forEach((key) => {
 
       cardContainer.classList.add("card");
 
-      let keyElement = document.createElement("p");
-      keyElement.textContent = "Owner: " + cardOwner.username;
-      cardContainer.appendChild(keyElement);
+      let ownerElement = document.createElement("p");
+      ownerElement.textContent = "Owner: " + cardOwner.username;
+      cardContainer.appendChild(ownerElement);
 
       let imageElement = document.createElement("img");
       if (card.status == "exchanging") {
@@ -53,11 +53,8 @@ Object.keys(data).forEach((key) => {
       cardContainer.appendChild(nameElement);
 
       if (cardOwner.userID == currentUser) {
-        console.log("start")
-        console.log(cardOwner.userId)
-        console.log(currentUser)
-        console.log(card)
-        console.log("end")
+     
+    
         userCardsContainer.appendChild(cardContainer);
       } else {
         marketCardsContainer.appendChild(cardContainer);
@@ -118,11 +115,11 @@ Object.keys(data).forEach((key) => {
 
           cardContainer.appendChild(offer);
           let acceptButton = document.createElement("button");
-          acceptButton.textContent = "Accept";
+          acceptButton.textContent = "ACCEPT";
           cardContainer.appendChild(acceptButton);
 
           let refuseButton = document.createElement("button");
-          refuseButton.textContent = "Refuse";
+          refuseButton.textContent = "REFUSE";
           cardContainer.appendChild(refuseButton);
 
           acceptButton.addEventListener("click", function (e) {

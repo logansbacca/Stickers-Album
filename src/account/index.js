@@ -24,7 +24,6 @@ window.onload = function checkUser() {
   if (currentUser == null) {
     redirect();
   } else {
-    console.log(userObject.username);
     albumName.innerText = `${userObject.username.toUpperCase()}'S ALBUM`;
     updateCredits();
     displayAlbum();
