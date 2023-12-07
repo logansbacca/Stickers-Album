@@ -1,3 +1,4 @@
+require('dotenv').config();
 import { logOut } from "../modules/logout";
 import { checkCache } from "../modules/checkCache";
 import { urlCharacters } from "../modules/urlCharacters.js";

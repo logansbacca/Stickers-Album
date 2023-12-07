@@ -1,9 +1,12 @@
+require("dotenv").config();
 import { getCurrentUser } from "./currentUser.js";
 
 const hash = "02e073f6adf82ccac85e3345759bb8d0";
 const ts = "1";
 let character = "";
-const apiKey = "e01d3bd89456ed75be357df6ef25b30f";
+
+const apiKey = process.env.API_KEY;
+
 const user = getCurrentUser();
 let data = "";
 if (user != null) {
